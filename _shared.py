@@ -118,6 +118,22 @@ def _css():
     .rk-step b {{ display:block; margin:8px 0 2px; color:var(--c); font-size:1.06rem; }}
     .rk-step span {{ color:{MUTED}; font-size:.86rem; }}
     .rk-arrow {{ display:flex; align-items:center; color:{CORAL}; font-size:1.7rem; font-weight:800; }}
+    /* multimodal branch flow */
+    .rk-mm {{ display:flex; align-items:center; gap:12px; flex-wrap:wrap; margin:12px 0 6px; }}
+    .rk-branches {{ display:flex; flex-direction:column; gap:10px; }}
+    .rk-mini {{ background:#fff; border:1px solid #EDE9E6; border-left:4px solid var(--c); border-radius:14px;
+        padding:11px 16px; box-shadow:0 6px 18px -14px rgba(30,41,59,.25); min-width:210px; transition:transform .15s; }}
+    .rk-mini:hover {{ transform:translateY(-2px); }}
+    .rk-mini .ic {{ font-size:1.25rem; }}
+    .rk-mini b {{ display:block; color:var(--c); font-size:1.02rem; margin-top:2px; }}
+    .rk-mini span.t {{ color:{MUTED}; font-size:.82rem; }}
+    /* subheaders (st.subheader -> h3): subtle coral accent */
+    .stMarkdown h3, [data-testid="stHeading"] h3, h3 {{ padding-left:11px; border-left:3px solid {CORAL}; }}
+    /* sidebar nav: hover glow + active accent */
+    div[data-testid="stSidebarNav"] a {{ transition:background .15s, box-shadow .15s; }}
+    div[data-testid="stSidebarNav"] a:hover {{ background:#FDECE7 !important; box-shadow:0 0 0 1px #F7C9BE inset; }}
+    div[data-testid="stSidebarNav"] a[aria-current="page"] {{ background:#FDE7E1 !important;
+        box-shadow:inset 3px 0 0 {CORAL}; }}
     </style>"""
 
 

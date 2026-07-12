@@ -23,7 +23,7 @@ st.markdown(f"""
   <p style="color:#64748b;margin:0;max-width:760px">
      A team project on the public <b>Rakuten France</b> multimodal classification challenge — predict each
      product's category (<span class="mono">prdtypecode</span>) from its <b>text</b> and its <b>image</b>.
-     This app is the interactive restitution, one page per project stage.</p>
+     This app is an interactive walkthrough of the project, one page per stage.</p>
 </div>
 """, unsafe_allow_html=True)
 
@@ -37,24 +37,29 @@ tiles([
 
 st.subheader("How it works")
 st.markdown("""
-<div class="rk-flow">
-  <div class="rk-step" style="--c:#F0654A"><div class="ic">📝🖼️</div><b>Text + Image</b>
-     <span>title, description & product photo</span></div>
+<div class="rk-mm">
+  <div class="rk-branches">
+    <div class="rk-mini" style="--c:#F0654A"><span class="ic">📝</span><b>Text branch</b>
+       <span class="t">title + description → clean → TF-IDF / CamemBERT</span></div>
+    <div class="rk-mini" style="--c:#F59E0B"><span class="ic">🖼️</span><b>Image branch</b>
+       <span class="t">product photo → CNN / ResNet</span></div>
+  </div>
   <div class="rk-arrow">→</div>
-  <div class="rk-step" style="--c:#4F46E5"><div class="ic">🧹 → 🔢</div><b>Clean + TF-IDF</b>
-     <span>HTML strip, stopwords, stemming, 20k features</span></div>
+  <div class="rk-step" style="--c:#4F46E5"><div class="ic">🔗</div><b>Text + Image</b>
+     <span>multimodal fusion</span></div>
   <div class="rk-arrow">→</div>
-  <div class="rk-step" style="--c:#0EA5A4"><div class="ic">🤖 → 🎯</div><b>27-class model</b>
-     <span>predict the category · weighted-F1 / accuracy</span></div>
+  <div class="rk-step" style="--c:#0EA5A4"><div class="ic">🎯</div><b>27 categories</b>
+     <span>predicted prdtypecode · weighted-F1 / accuracy</span></div>
 </div>
 """, unsafe_allow_html=True)
 st.divider()
 
 st.subheader("Project sections")
 st.markdown(
-    "- ✅ **Data & EDA** — business case, data exploration and text pre-processing *(Sandeep Grover — complete)*\n"
-    "- 🚧 **Modelling & Fusion** — classical & deep-learning models + multimodal fusion *(Jonathan Vints — placeholder)*\n"
-    "- 🚧 **Image** — image branch / CNN *(Thomas Maisch — placeholder)*\n"
+    "- ✅ **Data & EDA** — business case, exploration & text pre-processing → TF-IDF *(Sandeep Grover — complete)*\n"
+    "- 🚧 **Text modelling** — classical & deep-learning (CamemBERT) on the text features *(Jonathan Vints)*\n"
+    "- 🚧 **Image processing & modelling** — CNN / ResNet on the product photo *(Thomas Maisch)*\n"
+    "- 🚧 **Merge & model comparison** — fuse **Text + Image**, compare all models *(Jonathan Vints)*\n"
     "- 🚧 **Demo** — live prediction on new input *(team — once models are trained)*\n"
     "- 📄 **Report** — the written project report (PDF / Word)\n"
     "- ❓ **Q&A** — anticipated examiner questions with in-depth answers")

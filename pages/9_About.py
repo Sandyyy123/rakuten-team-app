@@ -19,7 +19,7 @@ st.markdown("Rakuten France Multimodal Product Data Classification challenge —
             "84,916 products (83,502 after removing 1,414 exact duplicates) · 27 classes · imbalance ratio 14.2×.")
 
 st.subheader("Deliverables")
-st.markdown("- This interactive **Streamlit app** (the course restitution)\n"
+st.markdown("- This interactive **Streamlit app** (the project walkthrough)\n"
             "- The written **project report** (see the Report page — PDF / Word)\n"
             "- **Team code on GitHub (Liora / DataScientest):** "
             "[DataScientest-Studio/apr26_bds_int_rakuten]"
