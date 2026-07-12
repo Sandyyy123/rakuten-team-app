@@ -9,7 +9,7 @@ _logo=_os.path.join(_os.path.dirname(_os.path.abspath(__file__)),"report_figs","
 if _os.path.exists(_logo):
     _b=_b64.b64encode(open(_logo,"rb").read()).decode()
     st.markdown(f'<img src="data:image/png;base64,{_b}" alt="Liora" '
-                'style="width:240px;height:auto;display:block;margin:6px 0 10px">',
+                'style="width:240px;height:auto;display:block;margin:2.4rem 0 0.6rem">',
                 unsafe_allow_html=True)
 
 st.markdown('<span class="rk-badge">Liora MLE · Project 06 · Team project</span>', unsafe_allow_html=True)
