@@ -42,20 +42,22 @@ st.divider()
 # ---- 2 Exploration: the 5 report figures ---------------------------------------
 st.header("2 · Data exploration & visualization")
 st.markdown("Every statistical test below exists to justify one concrete pre-processing or modelling decision.")
+st.caption("Duplicate analysis: 1,414 exact duplicate listings (1.7%) were found and removed, leaving the "
+           "83,502 analysed here (2,651, 3.1%, share a title alone).")
 
 st.subheader("2.1 Class imbalance")
-st.markdown("The 27 categories are heavily imbalanced: the largest class holds **10,209** listings and the "
-            "smallest **764** — a **13.4-to-1** ratio. A chi-square goodness-of-fit test against a uniform "
-            "distribution gives **χ² = 36,570 (p < 0.001)**, so the imbalance is real, not sampling noise. "
+st.markdown("The 27 categories are heavily imbalanced: the largest class holds **9,814** listings and the "
+            "smallest **693** — a **14.2-to-1** ratio. A chi-square goodness-of-fit test against a uniform "
+            "distribution gives **χ² = 35,282 (p < 0.001)**, so the imbalance is real, not sampling noise. "
             "Because the Rakuten challenge is scored on the **weighted-F1** score, weighted-F1 is the primary "
             "metric; macro-F1 is also tracked. Class weighting and stratified splits are applied.")
 st.image(os.path.join(RF, "cxd_classdist.png"), use_container_width=True)
-st.caption("Figure 1. Distribution of the 27 product categories, showing the 13.4-to-1 imbalance.")
+st.caption("Figure 1. Distribution of the 27 product categories, showing the 14.2-to-1 imbalance.")
 
 st.subheader("2.2 Missing descriptions — a Missing-Not-At-Random signal")
-st.markdown("**35.1%** of listings have no description, and the missing rate is **not uniform** across "
+st.markdown("**35.5%** of listings have no description, and the missing rate is **not uniform** across "
             "categories. A chi-square test of independence between description present/absent and the class "
-            "gives **χ² = 43,758** and **Cramér's V = 0.72** (p < 0.001) — a strong association. The "
+            "gives **χ² = 42,953** and **Cramér's V = 0.72** (p < 0.001) — a strong association. The "
             "missingness is therefore **Missing-Not-At-Random (MNAR)**: its very presence is informative. "
             "Rather than dropping ~35% of the data, a binary `desc_missing` indicator is added so the model "
             "can use the absence as a feature.")
@@ -79,38 +81,42 @@ st.image(os.path.join(RF, "cxd_lang.png"), use_container_width=True)
 st.caption("Figure 4. Language distribution across listings: predominantly French, with an English and German tail.")
 
 st.subheader("2.5 Word frequency")
-st.markdown("The most frequent words are almost all stopwords (*de, la, et, pour, les*). They appear in nearly "
-            "every listing and carry no category signal — which is precisely why **TF-IDF** weights them down "
-            "through the inverse-document-frequency term. The least frequent words are one-off typos and serial "
-            "numbers. Both extremes are removed: rare tokens by the minimum-document-frequency threshold, the "
-            "long tail by capping the vocabulary at the 20,000 most useful terms.")
+st.markdown("**Left panel (raw counts):** the most frequent words are almost all stopwords (*de, la, et, "
+            "pour, les*) — they carry no category signal and are **removed with the nltk FR/EN/DE stopword lists**. "
+            "**Right panel (after removal):** the most frequent remaining unigrams and bigrams are content words "
+            "(*cm, couleur, taille, piscine, eau*) — exactly the discriminative features TF-IDF keeps. The rarest "
+            "terms (one-off typos/serials) are dropped by the minimum-document-frequency threshold and the "
+            "20,000-feature cap.")
 st.image(os.path.join(RF, "cxd_wordfreq.png"), use_container_width=True)
-st.caption("Figure 5. The 20 most frequent words are all stopwords, motivating the inverse-document-frequency "
-           "weighting in TF-IDF.")
+st.caption("Figure 5. Word frequency before vs after stopword removal. Left: raw counts are dominated by "
+           "stopwords (removed). Right: the surviving top unigrams and bigrams are content words (bigrams in purple).")
 st.divider()
 
 # ---- 3 Pre-processing ----------------------------------------------------------
 st.header("3 · Pre-processing & feature engineering")
 st.subheader("3.1 Text cleaning (per listing, before the split)")
 st.markdown("These operations act on each listing independently, so they carry no information between rows and "
-            "are applied to the whole dataset **before** splitting: HTML stripped with **BeautifulSoup** "
-            "(so `rouge<br>bleu` becomes `rouge bleu`, not `rougebleu`); designation + cleaned description "
-            "**merged into one field**, lowercased and accent-folded; and a binary `desc_missing` indicator "
-            "built from the original column before any fill.")
+            "are applied to the whole dataset **before** splitting: designation + description **merged into one "
+            "field** and lowercased; URLs, e-mails, HTML tags (**BeautifulSoup**, so `rouge<br>bleu` becomes "
+            "`rouge bleu`), sizes and numbers are stripped while **French accents are kept**; the text is "
+            "tokenised with **TweetTokenizer**, **FR/EN/DE stopwords are removed (nltk)**, one-character tokens "
+            "dropped, and tokens **stemmed with the French Snowball stemmer** (an unstemmed copy is kept for the "
+            "transformer branch); a binary `desc_missing` indicator is built before any fill.")
 st.subheader("3.2 Train / test split")
 st.markdown("The data are split **80/20**, **stratified on `prdtypecode`** so both sets preserve the 27-class "
             "proportions. The test set is held out purely for evaluation. Any transformation that learns from "
             "the corpus is fitted on the **training set only**, to avoid data leakage.")
 st.subheader("3.3 TF-IDF vectorization")
 st.markdown("TF-IDF (scikit-learn) turns each merged text into a numeric vector: term frequency × inverse "
-            "document frequency (log of N over the number of documents containing the term). Ubiquitous words "
-            "(*de, le, et*) get near-zero weight; rare, discriminative words (*nintendo switch*) get high "
-            "weight. Both **unigrams and bigrams** are used — *jeux video* is a strong marker that neither "
-            "*jeux* nor *video* conveys alone — and the vocabulary is capped at the **20,000** most useful "
-            "terms out of ~280,000.")
+            "document frequency (log of N over the number of documents containing the term). **Stopwords "
+            "(*de, le, et*) are already removed, so they are never columns**; among the remaining content words, "
+            "common ones get a lower weight via IDF — e.g. *couleur* (18,030 docs → IDF 2.5) vs "
+            "*nintendo* (825 docs → IDF 5.6). Both **unigrams and bigrams** are used— *jeux video* is a "
+            "strong marker that neither *jeux* nor *video* conveys alone — and the vocabulary is capped at the "
+            "**20,000** most useful terms out of ~280,000.")
 st.markdown("The result is a **sparse matrix** — rows = listings, columns = 20,000 terms, each cell a TF-IDF "
             "score, ~99% zeros. Fitted on train only, then applied to both sets. The deliverable handed to the "
-            "modelling stage is **~67,900 train / ~17,000 test** rows: 20,000 sparse TF-IDF features plus "
+            "modelling stage is **~66,800 train / ~16,700 test** rows: 20,000 sparse TF-IDF features plus "
             "`desc_missing` and length features, over the 27 target categories.")
 st.markdown('<div class="rk-win"><b>Hand-off:</b> the numeric feature matrix goes to Jonathan Vints '
             '(models + multimodal fusion) and Thomas Maisch (image branch).</div>', unsafe_allow_html=True)

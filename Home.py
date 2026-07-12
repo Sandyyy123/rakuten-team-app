@@ -4,6 +4,9 @@ from _shared import page, footer, tiles, raku
 
 page("Home", "🛒")
 R = raku(); s = R["stats"]
+import os as _os
+_logo=_os.path.join(_os.path.dirname(_os.path.abspath(__file__)),"report_figs","liora_logo.png")
+if _os.path.exists(_logo): st.image(_logo, width=220)
 
 st.markdown('<span class="rk-badge">Liora MLE · Project 06 · Team restitution</span>', unsafe_allow_html=True)
 st.title("Rakuten France — Multimodal Product Classification")
