@@ -4,3 +4,5 @@ _shots/
 run.log
 .playwright-mcp/
 .DS_Store
+models/camembert/
+models/*.pth
