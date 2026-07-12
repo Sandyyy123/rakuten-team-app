@@ -16,10 +16,9 @@ st.markdown(
 st.subheader("Data")
 st.markdown("Rakuten France Multimodal Product Data Classification challenge — `X_train_update.csv` "
             "(designation, description, image ids) and `Y_train_CVw08PX.csv` (`prdtypecode`). "
-            "84,916 products · 27 classes · imbalance ratio 13.4×.")
+            "84,916 products (83,502 after removing 1,414 exact duplicates) · 27 classes · imbalance ratio 14.2×.")
 
 st.subheader("Deliverables")
 st.markdown("- This interactive **Streamlit app** (the course restitution)\n"
-            "- The written **project report** (see the Report page — PDF / Word)\n"
-            "- The exploration & pre-processing pipeline handing a TF-IDF feature matrix to the modelling stage")
+            "- The written **project report** (see the Report page — PDF / Word)")
 footer()
