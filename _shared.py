@@ -102,6 +102,22 @@ def _css():
     div[data-testid="stSidebarNav"]::before {{ content:"\\1F6D2  Rakuten Classifier"; display:block;
         padding:14px 18px 6px; font-weight:800; color:{CORAL}; font-size:1.05rem; letter-spacing:-.01em; }}
     div[data-testid="stSidebarNav"] a {{ border-radius:10px; }}
+
+    /* framed figures */
+    [data-testid="stImage"] img {{ border-radius:14px; border:1px solid #EDE9E6;
+        box-shadow:0 8px 20px -16px rgba(30,41,59,.35); background:#fff; padding:6px; }}
+    /* accent on section headers (st.header -> h2) */
+    h2 {{ padding-left:14px; border-left:4px solid {CORAL}; }}
+    /* pipeline flow */
+    .rk-flow {{ display:flex; align-items:stretch; gap:10px; flex-wrap:wrap; margin:12px 0 6px; }}
+    .rk-step {{ flex:1 1 180px; background:#fff; border:1px solid #EDE9E6; border-top:4px solid var(--c);
+        border-radius:16px; padding:16px 18px; box-shadow:0 8px 22px -16px rgba(30,41,59,.28);
+        transition:transform .15s; }}
+    .rk-step:hover {{ transform:translateY(-3px); }}
+    .rk-step .ic {{ font-size:1.7rem; line-height:1; }}
+    .rk-step b {{ display:block; margin:8px 0 2px; color:var(--c); font-size:1.06rem; }}
+    .rk-step span {{ color:{MUTED}; font-size:.86rem; }}
+    .rk-arrow {{ display:flex; align-items:center; color:{CORAL}; font-size:1.7rem; font-weight:800; }}
     </style>"""
 
 

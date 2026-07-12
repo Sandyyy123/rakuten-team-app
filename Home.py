@@ -34,6 +34,20 @@ tiles([
     (f"{s['pct_missing_description']}%", "Missing description"),
     ("~81%",                             "French text"),
 ])
+
+st.subheader("How it works")
+st.markdown("""
+<div class="rk-flow">
+  <div class="rk-step" style="--c:#F0654A"><div class="ic">📝🖼️</div><b>Text + Image</b>
+     <span>title, description & product photo</span></div>
+  <div class="rk-arrow">→</div>
+  <div class="rk-step" style="--c:#4F46E5"><div class="ic">🧹 → 🔢</div><b>Clean + TF-IDF</b>
+     <span>HTML strip, stopwords, stemming, 20k features</span></div>
+  <div class="rk-arrow">→</div>
+  <div class="rk-step" style="--c:#0EA5A4"><div class="ic">🤖 → 🎯</div><b>27-class model</b>
+     <span>predict the category · weighted-F1 / accuracy</span></div>
+</div>
+""", unsafe_allow_html=True)
 st.divider()
 
 st.subheader("Project sections")
