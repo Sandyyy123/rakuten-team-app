@@ -18,7 +18,7 @@ tiles([
     (str(s["n_classes"]),                "Categories"),
     (f"{s['imbalance_ratio']}×",         "Class imbalance"),
     (f"{s['pct_missing_description']}%", "Missing description"),
-    (f"~96%",                            "French text"),
+    ("~81%",                             "French text"),
 ])
 st.divider()
 
