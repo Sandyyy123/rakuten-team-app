@@ -8,7 +8,7 @@ import os as _os
 _logo=_os.path.join(_os.path.dirname(_os.path.abspath(__file__)),"report_figs","liora_logo.png")
 if _os.path.exists(_logo): st.image(_logo, width=220)
 
-st.markdown('<span class="rk-badge">Liora MLE · Project 06 · Team restitution</span>', unsafe_allow_html=True)
+st.markdown('<span class="rk-badge">Liora MLE · Project 06 · Team project</span>', unsafe_allow_html=True)
 st.title("Rakuten France — Multimodal Product Classification")
 st.markdown("#### Sorting 84,916 products into 27 categories from their French titles and photos")
 st.markdown(
