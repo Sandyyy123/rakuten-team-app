@@ -4,9 +4,13 @@ from _shared import page, footer, tiles, raku
 
 page("Home", "🛒")
 R = raku(); s = R["stats"]
-import os as _os
+import os as _os, base64 as _b64
 _logo=_os.path.join(_os.path.dirname(_os.path.abspath(__file__)),"report_figs","liora_logo.png")
-if _os.path.exists(_logo): st.image(_logo, width=220)
+if _os.path.exists(_logo):
+    _b=_b64.b64encode(open(_logo,"rb").read()).decode()
+    st.markdown(f'<img src="data:image/png;base64,{_b}" alt="Liora" '
+                'style="width:240px;height:auto;display:block;margin:6px 0 10px">',
+                unsafe_allow_html=True)
 
 st.markdown('<span class="rk-badge">Liora MLE · Project 06 · Team project</span>', unsafe_allow_html=True)
 st.title("Rakuten France — Multimodal Product Classification")
