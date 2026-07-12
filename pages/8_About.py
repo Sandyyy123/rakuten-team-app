@@ -20,5 +20,7 @@ st.markdown("Rakuten France Multimodal Product Data Classification challenge —
 
 st.subheader("Deliverables")
 st.markdown("- This interactive **Streamlit app** (the course restitution)\n"
-            "- The written **project report** (see the Report page — PDF / Word)")
+            "- The written **project report** (see the Report page — PDF / Word)\n"
+            "- **Code on GitHub:** [DataScientest-Studio/apr26_bds_int_rakuten]"
+            "(https://github.com/DataScientest-Studio/apr26_bds_int_rakuten)")
 footer()
