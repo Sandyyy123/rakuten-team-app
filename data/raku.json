@@ -1,0 +1,447 @@
+{
+ "stats": {
+  "n_products": 84916,
+  "n_classes": 27,
+  "imbalance_ratio": 13.4,
+  "largest_class": "2583 - Pool accessories",
+  "largest_n": 10209,
+  "smallest_class": "1180 - Trading figures",
+  "smallest_n": 764,
+  "pct_missing_description": 35.1,
+  "median_text_len": 314,
+  "top_languages": {
+   "fr": 1613,
+   "en": 180,
+   "de": 33,
+   "es": 24,
+   "nl": 21,
+   "it": 20
+  },
+  "best_macro_f1": 0.885,
+  "best_acc": 0.9023,
+  "text_dominates_gain": 0.0243
+ },
+ "leaderboard": [
+  {
+   "name": "Ensemble (CamemBERT v2 + large) + fine-tuned images",
+   "family": "fusion",
+   "macro_f1": 0.885,
+   "acc": 0.9023,
+   "src": "chase090"
+  },
+  {
+   "name": "CamemBERT-base v2 + fine-tuned images",
+   "family": "fusion",
+   "macro_f1": 0.8788,
+   "acc": 0.8958,
+   "src": "chase090"
+  },
+  {
+   "name": "CamemBERT-large + fine-tuned images",
+   "family": "fusion",
+   "macro_f1": 0.8761,
+   "acc": 0.8949,
+   "src": "chase090"
+  },
+  {
+   "name": "CamemBERT-base v2 (text only, len 256, 4 ep)",
+   "family": "transformer",
+   "macro_f1": 0.8676,
+   "acc": 0.8868,
+   "src": "chase090"
+  },
+  {
+   "name": "CamemBERT-large (text only)",
+   "family": "transformer",
+   "macro_f1": 0.8647,
+   "acc": 0.8843,
+   "src": "chase090"
+  },
+  {
+   "name": "CamemBERT-base v1 (len 128, 2 ep)",
+   "family": "transformer",
+   "macro_f1": 0.8486,
+   "acc": 0.8724,
+   "src": "camembert_gpu"
+  },
+  {
+   "name": "Multimodal concat (LinearSVC text + ResNet18 image)",
+   "family": "multimodal",
+   "macro_f1": 0.813,
+   "acc": 0.8295,
+   "src": "multimodal_FULL"
+  },
+  {
+   "name": "LinearSVC (TF-IDF 20k) - best classical",
+   "family": "classical",
+   "macro_f1": 0.7882,
+   "acc": 0.8002,
+   "src": "pipeline_final_FULL"
+  },
+  {
+   "name": "Logistic Regression (TF-IDF 20k)",
+   "family": "classical",
+   "macro_f1": 0.7758,
+   "acc": 0.7917,
+   "src": "pipeline_final_FULL"
+  },
+  {
+   "name": "XGBoost (SVD-300)",
+   "family": "classical",
+   "macro_f1": 0.7459,
+   "acc": 0.7637,
+   "src": "pipeline_final_FULL"
+  },
+  {
+   "name": "CamemBERT frozen + LogReg",
+   "family": "transformer",
+   "macro_f1": 0.7519,
+   "acc": null,
+   "src": "camembert_gpu"
+  },
+  {
+   "name": "Random Forest (SVD-300)",
+   "family": "classical",
+   "macro_f1": 0.7248,
+   "acc": 0.7466,
+   "src": "pipeline_final_FULL"
+  },
+  {
+   "name": "ResNet18 fine-tuned (image only)",
+   "family": "image",
+   "macro_f1": 0.6062,
+   "acc": 0.6515,
+   "src": "chase090"
+  },
+  {
+   "name": "Decision Tree (SVD-300)",
+   "family": "classical",
+   "macro_f1": 0.5699,
+   "acc": 0.6092,
+   "src": "pipeline_final_FULL"
+  },
+  {
+   "name": "ResNet18 frozen (image only)",
+   "family": "image",
+   "macro_f1": 0.463,
+   "acc": 0.5383,
+   "src": "multimodal_FULL"
+  }
+ ],
+ "per_class": [
+  {
+   "cls": "2905 - PC games (dl)",
+   "precision": 0.994,
+   "recall": 0.937,
+   "f1": 0.964,
+   "support": 174
+  },
+  {
+   "cls": "2583 - Pool accessories",
+   "precision": 0.948,
+   "recall": 0.977,
+   "f1": 0.962,
+   "support": 2042
+  },
+  {
+   "cls": "1301 - Baby textile",
+   "precision": 0.973,
+   "recall": 0.894,
+   "f1": 0.932,
+   "support": 161
+  },
+  {
+   "cls": "1160 - Trading cards",
+   "precision": 0.907,
+   "recall": 0.913,
+   "f1": 0.91,
+   "support": 791
+  },
+  {
+   "cls": "2522 - Stationery",
+   "precision": 0.895,
+   "recall": 0.924,
+   "f1": 0.909,
+   "support": 998
+  },
+  {
+   "cls": "1920 - Bedding/linen",
+   "precision": 0.892,
+   "recall": 0.915,
+   "f1": 0.904,
+   "support": 861
+  },
+  {
+   "cls": "1940 - Food/grocery",
+   "precision": 0.914,
+   "recall": 0.857,
+   "f1": 0.885,
+   "support": 161
+  },
+  {
+   "cls": "1300 - Model making",
+   "precision": 0.829,
+   "recall": 0.923,
+   "f1": 0.873,
+   "support": 1009
+  },
+  {
+   "cls": "60 - Consoles",
+   "precision": 0.961,
+   "recall": 0.741,
+   "f1": 0.837,
+   "support": 166
+  },
+  {
+   "cls": "1560 - Home furnishing",
+   "precision": 0.803,
+   "recall": 0.824,
+   "f1": 0.813,
+   "support": 1015
+  },
+  {
+   "cls": "2220 - Pet supplies",
+   "precision": 0.872,
+   "recall": 0.745,
+   "f1": 0.804,
+   "support": 165
+  },
+  {
+   "cls": "2060 - Wall decor",
+   "precision": 0.781,
+   "recall": 0.804,
+   "f1": 0.792,
+   "support": 999
+  },
+  {
+   "cls": "2585 - DIY/garden tools",
+   "precision": 0.807,
+   "recall": 0.772,
+   "f1": 0.789,
+   "support": 499
+  },
+  {
+   "cls": "1320 - Childcare/baby",
+   "precision": 0.8,
+   "recall": 0.758,
+   "f1": 0.778,
+   "support": 648
+  },
+  {
+   "cls": "1140 - Figurines",
+   "precision": 0.765,
+   "recall": 0.773,
+   "f1": 0.769,
+   "support": 534
+  },
+  {
+   "cls": "50 - Gaming accessories",
+   "precision": 0.758,
+   "recall": 0.774,
+   "f1": 0.766,
+   "support": 336
+  },
+  {
+   "cls": "1302 - Outdoor games/toys",
+   "precision": 0.805,
+   "recall": 0.715,
+   "f1": 0.757,
+   "support": 498
+  },
+  {
+   "cls": "2462 - Console games (used)",
+   "precision": 0.802,
+   "recall": 0.715,
+   "f1": 0.756,
+   "support": 284
+  },
+  {
+   "cls": "2582 - Garden furniture",
+   "precision": 0.781,
+   "recall": 0.701,
+   "f1": 0.739,
+   "support": 518
+  },
+  {
+   "cls": "2403 - Books/mags lots",
+   "precision": 0.751,
+   "recall": 0.718,
+   "f1": 0.734,
+   "support": 955
+  },
+  {
+   "cls": "2705 - Books",
+   "precision": 0.752,
+   "recall": 0.652,
+   "f1": 0.698,
+   "support": 552
+  },
+  {
+   "cls": "2280 - Magazines",
+   "precision": 0.6,
+   "recall": 0.791,
+   "f1": 0.683,
+   "support": 952
+  },
+  {
+   "cls": "40 - Imported games",
+   "precision": 0.736,
+   "recall": 0.6,
+   "f1": 0.661,
+   "support": 502
+  },
+  {
+   "cls": "1280 - Toys",
+   "precision": 0.678,
+   "recall": 0.613,
+   "f1": 0.644,
+   "support": 974
+  },
+  {
+   "cls": "1180 - Trading figures",
+   "precision": 0.798,
+   "recall": 0.464,
+   "f1": 0.587,
+   "support": 153
+  },
+  {
+   "cls": "1281 - Board games",
+   "precision": 0.672,
+   "recall": 0.44,
+   "f1": 0.531,
+   "support": 414
+  },
+  {
+   "cls": "10 - Books (used)",
+   "precision": 0.415,
+   "recall": 0.543,
+   "f1": 0.47,
+   "support": 623
+  }
+ ],
+ "top_confusions": [
+  {
+   "true": "1280 - Toys",
+   "pred": "1300 - Model making",
+   "count": 152
+  },
+  {
+   "true": "2403 - Books/mags lots",
+   "pred": "2280 - Magazines",
+   "count": 140
+  },
+  {
+   "true": "10 - Books (used)",
+   "pred": "2280 - Magazines",
+   "count": 121
+  },
+  {
+   "true": "1281 - Board games",
+   "pred": "1280 - Toys",
+   "count": 97
+  },
+  {
+   "true": "2280 - Magazines",
+   "pred": "10 - Books (used)",
+   "count": 94
+  },
+  {
+   "true": "2705 - Books",
+   "pred": "2280 - Magazines",
+   "count": 80
+  },
+  {
+   "true": "2060 - Wall decor",
+   "pred": "1560 - Home furnishing",
+   "count": 63
+  },
+  {
+   "true": "1560 - Home furnishing",
+   "pred": "2060 - Wall decor",
+   "count": 59
+  }
+ ],
+ "ablation": {
+  "ref_macro_f1": 0.7533,
+  "rows": [
+   {
+    "removed": "remove description merge (designation only -> reintroduces 35.1% missing)",
+    "d_macro_f1": -0.0211
+   },
+   {
+    "removed": "remove lowercasing",
+    "d_macro_f1": 0.0031
+   },
+   {
+    "removed": "remove HTML tag stripping",
+    "d_macro_f1": 0.0009
+   },
+   {
+    "removed": "remove accent folding (cafe != café)",
+    "d_macro_f1": 0.0006
+   },
+   {
+    "removed": "remove stopword removal (keep le, la, the, und...)",
+    "d_macro_f1": 0.0127
+   },
+   {
+    "removed": "remove bigrams (unigrams only)",
+    "d_macro_f1": 0.0065
+   },
+   {
+    "removed": "remove min_df=3 filter (keep rare terms, min_df=1)",
+    "d_macro_f1": 0.001
+   },
+   {
+    "removed": "remove 20k feature cap (keep all terms)",
+    "d_macro_f1": 0.0145
+   },
+   {
+    "removed": "remove IDF weighting (raw term counts)",
+    "d_macro_f1": 0.0021
+   },
+   {
+    "removed": "remove sublinear TF (raw tf instead of log)",
+    "d_macro_f1": -0.0079
+   }
+  ]
+ },
+ "significance": {
+  "stat": 44.19,
+  "p": 2.983e-11,
+  "text_f1": 0.7329,
+  "mm_f1": 0.7616
+ },
+ "multimodal": {
+  "text_only": {
+   "acc": 0.8028,
+   "macro_f1": 0.7887
+  },
+  "image_only_resize": {
+   "acc": 0.5344,
+   "macro_f1": 0.4616
+  },
+  "multimodal_concat_resize": {
+   "acc": 0.8303,
+   "macro_f1": 0.8134
+  },
+  "weighted_fusion_resize": {
+   "acc": 0.8179,
+   "macro_f1": 0.8011,
+   "image_weight": 0.3
+  },
+  "image_only_autocrop": {
+   "acc": 0.5383,
+   "macro_f1": 0.463
+  },
+  "multimodal_concat_autocrop": {
+   "acc": 0.8295,
+   "macro_f1": 0.813
+  },
+  "weighted_fusion_autocrop": {
+   "acc": 0.8174,
+   "macro_f1": 0.8004,
+   "image_weight": 0.3
+  }
+ }
+}

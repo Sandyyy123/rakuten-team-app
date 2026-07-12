@@ -1,0 +1,6 @@
+__pycache__/
+*.pyc
+_shots/
+run.log
+.playwright-mcp/
+.DS_Store

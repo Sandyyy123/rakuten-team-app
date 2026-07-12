@@ -1,0 +1,488 @@
+[
+ {
+  "code": "10",
+  "name": "10 - Books (used)",
+  "keywords": [
+   "edition de",
+   "in",
+   "tome",
+   "guide",
+   "der",
+   "histoire",
+   "and",
+   "how"
+  ],
+  "samples": [
+   "And To Every Beast... (Treasures Of The Vatican Library)",
+   "Petit Guide Du Bien-Être - Comment Utiliser L'hypnose Dans Son Quotidien?: Découvrez Tout Ce Qu'il Faut Savoir Sur Les Bienfaits De L'hypnothérapie"
+  ]
+ },
+ {
+  "code": "40",
+  "name": "40 - Imported games",
+  "keywords": [
+   "import",
+   "edition",
+   "version",
+   "ensemble complet",
+   "import japonais",
+   "contrôleur",
+   "jap",
+   "japon"
+  ],
+  "samples": [
+   "Easy Learning Discover Our World",
+   "Radiant Silvergun (Version Jap)"
+  ]
+ },
+ {
+  "code": "50",
+  "name": "50 - Gaming accessories",
+  "keywords": [
+   "ps4",
+   "skylanders",
+   "pour",
+   "nintendo",
+   "manette",
+   "xbox",
+   "console",
+   "wii"
+  ],
+  "samples": [
+   "Arozzi Star Trek Edition Rouge Siège Gaming En Similicuir",
+   "Bluetooth Gamepad Game Controller Joypad Direct Playpubg Ios / Android Universal Bt702"
+  ]
+ },
+ {
+  "code": "60",
+  "name": "60 - Consoles",
+  "keywords": [
+   "console",
+   "go",
+   "nintendo",
+   "xbox",
+   "br",
+   "console de",
+   "oui br",
+   "3ds"
+  ],
+  "samples": [
+   "Game Boy Pocket Jaune",
+   "Rétro Console De Jeu Vidéo Mini Tv Portable Famille Loisirs Intégré 620 Classique Différents Jeux Double Manette Joueur De Jeu"
+  ]
+ },
+ {
+  "code": "1140",
+  "name": "1140 - Figurines",
+  "keywords": [
+   "figurine",
+   "shirt",
+   "figurines",
+   "gundam",
+   "pop",
+   "figure",
+   "statuette",
+   "mug"
+  ],
+  "samples": [
+   "Figurine Pop - Doctor Who - 9ème Docteur With Banana - Funko Pop",
+   "Aliens Colonial Marines Variant Play Arts Kai Figurine Lurker 20 Cm"
+  ]
+ },
+ {
+  "code": "1160",
+  "name": "1160 - Trading cards",
+  "keywords": [
+   "carte",
+   "vf",
+   "mtg",
+   "rare",
+   "pokemon",
+   "vo",
+   "magic",
+   "commune"
+  ],
+  "samples": [
+   "Chenipotte Et Deux Évolutions Blindalys Et Armulys",
+   "Voile De Mystère - Les Traitres De Kamigawa"
+  ]
+ },
+ {
+  "code": "1180",
+  "name": "1180 - Trading figures",
+  "keywords": [
+   "warhammer",
+   "heroclix",
+   "figurine",
+   "miniatures",
+   "métal",
+   "prince",
+   "masque",
+   "pot de"
+  ],
+  "samples": [
+   "Fx : Effets Spéciaux - Gel De Mica - Prince Auguste",
+   "Heroclix- Green Arrow #008 (The Joker Wild)"
+  ]
+ },
+ {
+  "code": "1280",
+  "name": "1280 - Toys",
+  "keywords": [
+   "doudou",
+   "rc",
+   "peluche",
+   "poupée",
+   "puzzle",
+   "jouet",
+   "lego",
+   "figurine"
+  ],
+  "samples": [
+   "Sac D'épaule Durable Voyage Portable Sac De Transport De Protection De Stockage Pour Hubsan @Uapa4614",
+   "Starlux - Indiens - Série Ordinaire 54 - Piéton Squaw Avec Bébé (Réf 833)"
+  ]
+ },
+ {
+  "code": "1281",
+  "name": "1281 - Board games",
+  "keywords": [
+   "jeu",
+   "cartes",
+   "enfants",
+   "game",
+   "cards",
+   "propos",
+   "card",
+   "jeu de"
+  ],
+  "samples": [
+   "Magic The Gathering - Grasp Of Fate (003342) - Commander 2015",
+   "1 Set Gyro En Bois Toupie Gyroscope Peg-Top Chinois Classique Jouets Pour Enfants"
+  ]
+ },
+ {
+  "code": "1300",
+  "name": "1300 - Model making",
+  "keywords": [
+   "générique",
+   "drone",
+   "rc",
+   "43",
+   "dji",
+   "maquette",
+   "voiture",
+   "ho"
+  ],
+  "samples": [
+   "Visuo Zen K1 Gps 5g Wifi Fpv 4k 720p Double Caméra Brushless Rc Pliable Drone Rtf-Générique",
+   "Extension Rod Selfie Trépied Avec Bâton 1/4 Adaptateur À Vis Pour Dji Osmo Pocket B2710-Générique"
+  ]
+ },
+ {
+  "code": "1301",
+  "name": "1301 - Baby textile",
+  "keywords": [
+   "billard",
+   "chaussettes",
+   "fléchettes",
+   "bébé",
+   "harrows",
+   "baby foot",
+   "balles",
+   "fléchette"
+  ],
+  "samples": [
+   "Queue Billard Français Longoni Ravenna B-Longoni",
+   "Nouveau-né Baby Girls Kid Bow souple Semelle en caoutchouc Chaussures Chaussettes Chausson Bas-Auucne"
+  ]
+ },
+ {
+  "code": "1302",
+  "name": "1302 - Outdoor games/toys",
+  "keywords": [
+   "stream",
+   "pêche",
+   "trampoline",
+   "nerf",
+   "jouet",
+   "stress",
+   "tricycle",
+   "camping"
+  ],
+  "samples": [
+   "Hasbro Nerf Mega Bulldog",
+   "Panda Spongieuse Poisson Parfumé Collection Lente Hausse Squeeze Balle Anti-Stress Toy"
+  ]
+ },
+ {
+  "code": "1320",
+  "name": "1320 - Childcare/baby",
+  "keywords": [
+   "bébé",
+   "poussette",
+   "bavoir",
+   "lit",
+   "mois",
+   "langer",
+   "hochet",
+   "chicco"
+  ],
+  "samples": [
+   "Pat'patrouille Tabouret - Enfant",
+   "Lit Rembourre Tissu Lit Lit 140 X 200 Brun"
+  ]
+ },
+ {
+  "code": "1560",
+  "name": "1560 - Home furnishing",
+  "keywords": [
+   "meuble",
+   "matelas",
+   "cm",
+   "cuisine",
+   "table",
+   "bag",
+   "sommier",
+   "confort"
+  ],
+  "samples": [
+   "Links 51066450 Beckett A2 Bureau Bois Blanc/Bleu",
+   "Matelas Avec Latex Naturel 80 Kg/M3 Dehoussable - 21 Cm - Ferme &#43; 2 Protèges Matelas Offerts Natural Latex - 200x200"
+  ]
+ },
+ {
+  "code": "1920",
+  "name": "1920 - Bedding/linen",
+  "keywords": [
+   "coussin",
+   "oreiller",
+   "rideau",
+   "taie",
+   "polyester",
+   "coton",
+   "cm",
+   "nappe"
+  ],
+  "samples": [
+   "Impression Fruit Mode Souple Couverture Pour Enfants Couverture Chaude Flanelle De 100x80cm",
+   "Joyeuse Saint-Valentin Jetez Taie D'oreiller Sweet Love Coussin Carré Couverture"
+  ]
+ },
+ {
+  "code": "1940",
+  "name": "1940 - Food/grocery",
+  "keywords": [
+   "bio",
+   "café",
+   "capsules",
+   "sucre",
+   "250g",
+   "sachet",
+   "chocolat",
+   "gr"
+  ],
+  "samples": [
+   "Sablés Des Flandres Lu 250g",
+   "Tassimo Spécialité Laitière Lot De 3 3 X 16 T-Discs"
+  ]
+ },
+ {
+  "code": "2060",
+  "name": "2060 - Wall decor",
+  "keywords": [
+   "led",
+   "décoration",
+   "lampe",
+   "horloge",
+   "drapeau",
+   "sticker",
+   "lumière",
+   "cm"
+  ],
+  "samples": [
+   "20 Party Rotin Multicolor Brochettes Lantern Rose Garden Box Cell Led",
+   "Tapis Bambou Damier 120x170 Cm Clair"
+  ]
+ },
+ {
+  "code": "2220",
+  "name": "2220 - Pet supplies",
+  "keywords": [
+   "chien",
+   "pet",
+   "chat",
+   "chiens",
+   "pour chien",
+   "pour",
+   "animaux",
+   "aquarium"
+  ],
+  "samples": [
+   "Exquis Réglable Bowknot Diamant Chien Puppy Pet Colliers@Hoeroie1210",
+   "Support Oiseau Plate-Forme Perchoir Stand Pour Petits Animaux Magideal"
+  ]
+ },
+ {
+  "code": "2280",
+  "name": "2280 - Magazines",
+  "keywords": [
+   "du",
+   "01",
+   "magazine",
+   "du 01",
+   "03",
+   "06",
+   "09",
+   "07"
+  ],
+  "samples": [
+   "Echo De La Frontiere (L') N° 9678 Du 08/10/1879 - Les Elections En Prusse - En Monarchie / M. Weiss - Les Republiques D'amerique - Les Ecoles D'arts Et Les Metiers - Feuilleton / La Rose Du Liban Par A. Cummins",
+   "Pirouett'  N° 44 : Bienvenue Au Texas"
+  ]
+ },
+ {
+  "code": "2403",
+  "name": "2403 - Books/mags lots",
+  "keywords": [
+   "lot",
+   "tomes",
+   "volumes",
+   "livres",
+   "numéros",
+   "revues",
+   "revue",
+   "tome"
+  ],
+  "samples": [
+   "Lot Manga Zéro Pour",
+   "Le Combat Syndicaliste 300"
+  ]
+ },
+ {
+  "code": "2462",
+  "name": "2462 - Console games (used)",
+  "keywords": [
+   "jeux",
+   "jeu",
+   "lot",
+   "nintendo",
+   "wii",
+   "playstation",
+   "pc",
+   "ps3"
+  ],
+  "samples": [
+   "Jeu Orion 4 In 1 Echecsdames Halma Et Nim",
+   "Console Xbox 360 Noir Avec 2 Manettes + 9 Jeux Vidéo"
+  ]
+ },
+ {
+  "code": "2522",
+  "name": "2522 - Stationery",
+  "keywords": [
+   "mm",
+   "stylo",
+   "lindner",
+   "a4",
+   "crayon",
+   "encre",
+   "papier",
+   "feuilles"
+  ],
+  "samples": [
+   "Wedo 168203 Perforateur Déco À Motif Spirale Grand Modèle",
+   "Bic 4 Couleurs Grip Stylo-Bille Noir + Bleu + Rouge + Vert"
+  ]
+ },
+ {
+  "code": "2582",
+  "name": "2582 - Garden furniture",
+  "keywords": [
+   "jardin",
+   "kitchen",
+   "de jardin",
+   "cm",
+   "parasol",
+   "pot",
+   "en",
+   "stainless"
+  ],
+  "samples": [
+   "Stainless Steel Digital Electronic Kitchen Cooking Food Weighing Scaleshpp12979",
+   "Toile D'ombrage Avec Poteaux Hdpe Carré 3 X 3 M Blanc"
+  ]
+ },
+ {
+  "code": "2583",
+  "name": "2583 - Pool accessories",
+  "keywords": [
+   "piscine",
+   "spa",
+   "sauna",
+   "cellule",
+   "pompe",
+   "eau",
+   "filtration",
+   "filtre"
+  ],
+  "samples": [
+   "Éclairage de plafond de lecture de plate-forme de cuisine de la CE de CREE LED de 3W 12V 24V",
+   "Epurateur à cartouche intex 3.8 m³/h"
+  ]
+ },
+ {
+  "code": "2585",
+  "name": "2585 - DIY/garden tools",
+  "keywords": [
+   "mm",
+   "tronçonneuse",
+   "outil",
+   "aspirateur",
+   "ad",
+   "arrosage",
+   "pour",
+   "tondeuse"
+  ],
+  "samples": [
+   "Makita ur3000 Coupe-borduress électrique",
+   "1pc HC-888N Remplacement du filtre Pour Honeywell HCM 890 / 890B / 890C Humidificateur vacuum cleaner 408"
+  ]
+ },
+ {
+  "code": "2705",
+  "name": "2705 - Books",
+  "keywords": [
+   "eacute",
+   "la",
+   "du",
+   "tome",
+   "le",
+   "et",
+   "les",
+   "qui"
+  ],
+  "samples": [
+   "La Vierge Du Cap",
+   "Journal D'un Médecin Généraliste"
+  ]
+ },
+ {
+  "code": "2905",
+  "name": "2905 - PC games (dl)",
+  "keywords": [
+   "li",
+   "39",
+   "jeu",
+   "en téléchargement",
+   "jeu en",
+   "téléchargement",
+   "the",
+   "des"
+  ],
+  "samples": [
+   "Mini Z Racers Turbo - Jeu En Téléchargement",
+   "Labyrinths Of The World: Devils Tower - Jeu En Téléchargement"
+  ]
+ }
+]
