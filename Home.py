@@ -25,8 +25,8 @@ st.divider()
 st.subheader("Project sections")
 st.markdown(
     "- ✅ **Data & EDA** — business case, data exploration and text pre-processing *(Sandeep Grover — complete)*\n"
-    "- 🚧 **Modelling** — classical & deep-learning text models *(Jonathan Vints — placeholder)*\n"
-    "- 🚧 **Image & Fusion** — image branch + multimodal fusion + results *(Thomas Maisch — placeholder)*\n"
+    "- 🚧 **Modelling & Fusion** — classical & deep-learning models + multimodal fusion *(Jonathan Vints — placeholder)*\n"
+    "- 🚧 **Image** — image branch / CNN *(Thomas Maisch — placeholder)*\n"
     "- 🚧 **Demo** — live prediction on new input *(team — once models are trained)*\n"
     "- 📄 **Report** — the written project report (PDF / Word)")
 

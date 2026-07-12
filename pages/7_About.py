@@ -10,8 +10,8 @@ st.subheader("Team roles")
 st.markdown(
     "- **Sandeep Grover** — business case, data exploration & data-visualization, text pre-processing "
     "(TF-IDF, 80/20 split). *(This app's Data & EDA page + the report.)*\n"
-    "- **Jonathan Vints** — machine-learning models (classical → deep learning).\n"
-    "- **Thomas Maisch** — image model, multimodal fusion, conclusion.")
+    "- **Jonathan Vints** — machine-learning models (classical → deep learning) and multimodal fusion.\n"
+    "- **Thomas Maisch** — image branch (CNN / image model), images only.")
 
 st.subheader("Data")
 st.markdown("Rakuten France Multimodal Product Data Classification challenge — `X_train_update.csv` "

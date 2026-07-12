@@ -27,7 +27,8 @@ st.markdown(
     "**Objective.** Predict the product-type code (`prdtypecode`) of each listing from its text and image — "
     "the public Rakuten France Multimodal Product Data Classification challenge [1] (27 product-type codes). "
     "**Team project:** this report covers the business framing, data exploration and text pre-processing; "
-    "teammates' reports follow with the models and the image branch + fusion.")
+    "teammates' work follows — the models and multimodal fusion (Jonathan Vints), and the image branch "
+    "(Thomas Maisch).")
 
 tiles([
     (f"{s['n_products']:,}",             "Products"),
@@ -111,6 +112,6 @@ st.markdown("The result is a **sparse matrix** — rows = listings, columns = 20
             "score, ~99% zeros. Fitted on train only, then applied to both sets. The deliverable handed to the "
             "modelling stage is **~67,900 train / ~17,000 test** rows: 20,000 sparse TF-IDF features plus "
             "`desc_missing` and length features, over the 27 target categories.")
-st.markdown('<div class="rk-win"><b>Hand-off:</b> the numeric feature matrix goes to Jonathan Vints (models) '
-            'and Thomas Maisch (image branch + fusion).</div>', unsafe_allow_html=True)
+st.markdown('<div class="rk-win"><b>Hand-off:</b> the numeric feature matrix goes to Jonathan Vints '
+            '(models + multimodal fusion) and Thomas Maisch (image branch).</div>', unsafe_allow_html=True)
 footer()

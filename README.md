@@ -11,17 +11,18 @@ Each project stage is a **separate file** — edit only your own page.
 |---|---|---|
 | `Home.py` | shared | landing |
 | `pages/1_Data_and_EDA.py` | **Sandeep Grover** | ✅ complete (business case, EDA, TF-IDF pre-processing) |
-| `pages/2_Modelling.py` | **Jonathan Vints** | 🚧 placeholder — add classical & deep-learning models |
-| `pages/3_Image_and_Fusion.py` | **Thomas Maisch** | 🚧 placeholder — add image branch + fusion + results |
+| `pages/2_Modelling_and_Fusion.py` | **Jonathan Vints** | 🚧 placeholder — classical & deep-learning models + multimodal fusion |
+| `pages/3_Image.py` | **Thomas Maisch** | 🚧 placeholder — image branch (CNN), images only |
 | `pages/4_Demo.py` | team | 🚧 placeholder — live prediction once models exist |
 | `pages/5_Report.py` | shared | ✅ serves the project report (PDF / Word) |
-| `pages/6_About.py` | shared | team roles |
+| `pages/6_Presentation.py` | shared | ✅ Sandeep's slide deck (embedded) |
+| `pages/7_About.py` | shared | team roles |
 
 ## How to edit your part
 
 1. You will be added as a **collaborator** on this GitHub repo.
-2. Open your page file (e.g. `pages/2_Modelling.py`) — edit it directly in the GitHub web
-   editor (pencil icon), or clone the repo and edit locally.
+2. Open your page file (Jonathan → `pages/2_Modelling_and_Fusion.py`, Thomas → `pages/3_Image.py`) —
+   edit it directly in the GitHub web editor (pencil icon), or clone the repo and edit locally.
 3. Commit / push. The live app **auto-redeploys** (Streamlit Community Cloud).
 
 Only change your own page. Shared helpers live in `_shared.py` (colours, `page()`, `footer()`,
