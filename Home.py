@@ -60,7 +60,7 @@ st.markdown(
     "- 🚧 **Text modelling** — classical & deep-learning (CamemBERT) on the text features *(Jonathan Vints)*\n"
     "- 🚧 **Image processing & modelling** — CNN / ResNet on the product photo *(Thomas Maisch)*\n"
     "- 🚧 **Merge & model comparison** — fuse **Text + Image**, compare all models *(Jonathan Vints)*\n"
-    "- 🚧 **Demo** — live prediction on new input *(team — once models are trained)*\n"
+    "- 🚧 **Run the model** — live prediction on new input *(team — once models are trained)*\n"
     "- 📄 **Report** — the written project report (PDF / Word)\n"
     "- ❓ **Q&A** — anticipated examiner questions with in-depth answers")
 

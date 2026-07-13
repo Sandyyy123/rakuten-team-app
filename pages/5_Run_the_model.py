@@ -1,10 +1,10 @@
-"""Demo — the full model runs as a Streamlit app you can open on HuggingFace OR run locally."""
+"""Run the model — the full classifier runs as a Streamlit app on HuggingFace OR locally."""
 import os, json
 import streamlit as st
 import streamlit.components.v1 as components
 from _shared import page, footer
 
-page("Demo", "🔮")
+page("Run the model", "🔮")
 
 # The full fused CamemBERT + image model runs as a standalone Streamlit app. It is too big for
 # Streamlit Cloud (~1 GB), so it lives on a HuggingFace Space (free 16 GB) and/or runs locally.
@@ -12,7 +12,7 @@ HF_USER     = "<your-username>"     # your HuggingFace username (or org, e.g. "l
 HF_DEMO_URL = ""                    # after deploy: f"https://{HF_USER}-rakuten-liora-app.hf.space"
 SPACE_REPO  = f"https://huggingface.co/spaces/{HF_USER}/rakuten-liora-app"
 
-st.title("🔮 Live demo — predict a product's category")
+st.title("🔮 Run the model — predict a product's category")
 st.caption("Type a French product title (and/or upload an image) → the fine-tuned CamemBERT + image "
            "model predicts one of 27 categories, with top-3 confidence.")
 
