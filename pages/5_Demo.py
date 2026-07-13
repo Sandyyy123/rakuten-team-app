@@ -22,6 +22,16 @@ st.title("🔮 Live demo — predict a product's category")
 st.caption("Type a French product title (and/or upload an image) → the model predicts the category. "
            "Fine-tuned CamemBERT (text) + CNN (image), late fusion.")
 
+# The full model runs on a HuggingFace Space (16 GB); Streamlit Cloud (~1 GB) is too small for CamemBERT.
+# After you create the Space, paste its URL here (e.g. https://<user>-rakuten-multimodal.hf.space).
+HF_DEMO_URL = ""  # <-- set once the HF Space is live
+if HF_DEMO_URL:
+    st.markdown(
+        f'<div class="rk-win"><b>▶ Run the live full model.</b> This page is the walkthrough; the '
+        f'fine-tuned CamemBERT + image model runs on our HuggingFace Space (16 GB RAM). '
+        f'<a href="{HF_DEMO_URL}" target="_blank"><b>Open the live demo →</b></a></div>',
+        unsafe_allow_html=True)
+
 if not TEXT_READY:
     st.markdown('<div class="rk-warn"><b>Model not loaded here.</b> The trained CamemBERT + image files '
                 'go in <code>models/</code> (see <code>models/CHECKLIST.md</code>). The full model needs '
