@@ -146,7 +146,7 @@ def page(title, icon):
 def footer():
     st.divider()
     st.caption(
-        "Liora MLE · Project 06 — Rakuten France multimodal product classification (27 classes). "
+        "Liora MLE · Project 06 - Rakuten France multimodal product classification (27 classes). "
         "Team: Sandeep Grover · Jonathan Vints · Thomas Maisch.  \n"
         "Dataset 84,916 products (83,502 after removing duplicates). Numbers trace to canonical result files."
     )

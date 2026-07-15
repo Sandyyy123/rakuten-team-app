@@ -32,12 +32,16 @@ st.caption(f"Source: Rakutan_feature_engineering.py on Jonathan's branch -> {GH}
 
 st.subheader("2 · Deep learning - XLM-RoBERTa")
 st.markdown(
-    "- A custom `XLMRoBERTaClassifier` on top of **`xlm-roberta-base`** (`AutoModel.from_pretrained`), "
-    "max sequence length 256, dropout 0.3, a linear head over the 27 classes.\n"
+    "- `XLMRoBERTaClassifier` on **`xlm-roberta-base`**: **embeddings frozen, all 12 encoder layers trainable** "
+    "(`FREEZE_LAYERS = 0`); head = dropout 0.3 + Linear 768 to 27 over the CLS token.\n"
+    "- **`MAX_LEN = 256`** because about **79% of texts fit** under it; 512 mostly adds padding.\n"
     "- Multilingual by design - fits the corpus (~81% French, rest English/German), no per-language model needed.\n"
-    "- **HTML cleaned with BeautifulSoup.** Class-weights and several learning-rate schedules were tried; "
-    "**none outperformed** the clean BeautifulSoup-based model.\n"
-    "- **Best text model: weighted-F1 ≈ 0.87**, well above the text benchmark (0.8113).")
+    "- AdamW lr 2e-5, batch 16, grad-clip 1.0, up to 10 epochs, **ReduceLROnPlateau** (factor 0.5, patience 1), "
+    "early stopping (patience 3, min_delta 1e-4) **restoring the best checkpoint**.\n"
+    "- **Cleaning is the lever:** light cleaning (BeautifulSoup for HTML + regex for URLs/emails only) gives **0.87**; "
+    "heavy cleaning only **0.82**. Stopwords are KEPT: the transformer was pretrained on running text and needs it for context.\n"
+    "- Tried without gain: class weights; designation/description as a **sentence pair**; linear-decay schedule.\n"
+    "- **Best text model: weighted-F1 = 0.87**, well above the text benchmark (0.8113).")
 st.caption(f"Source: Rakutan_nn.py on Jonathan's branch -> {GH}")
 
 st.markdown(
