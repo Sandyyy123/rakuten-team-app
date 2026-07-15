@@ -21,6 +21,22 @@ tiles([
     ("KNN + XGBoost", "Classical baselines"),
 ])
 
+st.markdown(
+    '<div class="rk-note"><b>Preprocessing: shared vs per-model.</b> Row-level steps are the same for every '
+    'model, so all models see the same rows: merge title + description, strip HTML (BeautifulSoup), URLs and '
+    'e-mails, remove the 1,414 exact duplicates, one stratified 80/20 split. Only the <b>representation</b> '
+    'differs, because each architecture needs different input.</div>', unsafe_allow_html=True)
+st.markdown(
+    "| Step | Classical (KNN/XGBoost) | Transformer (XLM-RoBERTa) |\n|---|---|---|\n"
+    "| Lowercase | yes | **no** |\n| Remove stopwords | yes (FR/EN/DE) | **no** |\n"
+    "| Fold accents | **no** (lexical in French) | **no** |\n"
+    "| Stemming | yes (`text`) | **no** (`text_nostem`) |\n"
+    "| Tokenizer | TweetTokenizer | **model's own SentencePiece** |\n"
+    "| Vectorisation | TF-IDF 20k -> SVD -> SMOTE | none, the model embeds |\n")
+st.caption("Why opposite: TF-IDF only counts tokens, so stopwords are noise and Housse/housse would split one "
+           "signal in two. A transformer was pretrained on running text and uses word order and function words, "
+           "so the same stripping destroys signal. Measured: 0.87 light cleaning vs 0.82 heavy.")
+
 st.subheader("1 · Feature engineering & classical models")
 st.markdown(
     "- **Combine** `designation` + `description`; keep French/English rows; strip **HTML** (BeautifulSoup) "
