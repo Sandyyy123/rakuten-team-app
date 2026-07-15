@@ -11,7 +11,7 @@ LOCAL_URL = "http://localhost:8530"   # your local instance
 VPS_URL   = ""                        # public Hostinger URL, set once deployed (e.g. http://82.29.180.70:8501)
 
 st.title("🔮 Run the model - predict a product's category")
-st.caption("Type a French product title (and/or upload an image) → the fine-tuned CamemBERT + image "
+st.caption("Type a French product title (and/or upload an image) → the fine-tuned XLM-RoBERTa + image "
            "model predicts one of 27 categories, with top-3 confidence. Open it below.")
 
 c1, c2 = st.columns(2)
@@ -56,6 +56,6 @@ if os.path.exists(sp):
             ip = os.path.join(SAMP, s["image"])
             if os.path.exists(ip):
                 st.image(ip, use_container_width=True, caption=f"{s['name']} · {s['code']}")
-st.caption("Under the hood: text branch (fine-tuned CamemBERT) + image branch (CNN), late fusion "
+st.caption("Under the hood: text branch (XLM-RoBERTa) + image branch (EfficientNet-B0), late fusion "
            "→ top-3 categories with confidence.")
 footer()
