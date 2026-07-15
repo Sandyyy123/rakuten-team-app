@@ -22,10 +22,10 @@ tiles([
 ])
 
 st.markdown(
-    '<div class="rk-note"><b>Preprocessing: shared vs per-model.</b> Row-level steps are the same for every '
-    'model, so all models see the same rows: merge title + description, strip HTML (BeautifulSoup), URLs and '
-    'e-mails, remove the 1,414 exact duplicates, one stratified 80/20 split. Only the <b>representation</b> '
-    'differs, because each architecture needs different input.</div>', unsafe_allow_html=True)
+    '<div class="rk-note"><b>Preprocessing: shared, then per-model.</b> Cleaning is done once: merge title + '
+    'description, strip HTML (BeautifulSoup), URLs and e-mails, remove the 1,414 exact duplicates, one '
+    'stratified 80/20 split. The <b>representation</b> is then built per model, because each architecture '
+    'needs different input.</div>', unsafe_allow_html=True)
 st.markdown(
     "| Step | Classical (KNN/XGBoost) | Transformer (XLM-RoBERTa) |\n|---|---|---|\n"
     "| Lowercase | yes | **no** |\n| Remove stopwords | yes (FR/EN/DE) | **no** |\n"
