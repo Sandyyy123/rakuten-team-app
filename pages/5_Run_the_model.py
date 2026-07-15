@@ -1,4 +1,4 @@
-"""Run the model — opens the live classifier: your local instance, or the public Hostinger one."""
+"""Run the model - opens the live classifier: your local instance, or the public Hostinger one."""
 import os, json
 import streamlit as st
 import streamlit.components.v1 as components
@@ -10,7 +10,7 @@ page("Run the model", "🔮")
 LOCAL_URL = "http://localhost:8530"   # your local instance
 VPS_URL   = ""                        # public Hostinger URL, set once deployed (e.g. http://82.29.180.70:8501)
 
-st.title("🔮 Run the model — predict a product's category")
+st.title("🔮 Run the model - predict a product's category")
 st.caption("Type a French product title (and/or upload an image) → the fine-tuned CamemBERT + image "
            "model predicts one of 27 categories, with top-3 confidence. Open it below.")
 
@@ -20,10 +20,10 @@ with c1:
                 'Free, private, uses your GPU/RAM. Start it, then open the local address.</div>',
                 unsafe_allow_html=True)
     st.link_button("▶ Open local instance", LOCAL_URL, use_container_width=True)
-    st.caption(f"Address: {LOCAL_URL} — works while `./run_local.sh` is running on your machine.")
+    st.caption(f"Address: {LOCAL_URL} - works while `./run_local.sh` is running on your machine.")
 with c2:
     st.markdown('<div class="rk-tile" style="--c:#4F46E5"><b>☁️ On Hostinger (public)</b><br>'
-                'A shareable link anyone can open — the grader, teammates, any device.</div>',
+                'A shareable link anyone can open - the grader, teammates, any device.</div>',
                 unsafe_allow_html=True)
     if VPS_URL:
         st.link_button("▶ Open public demo", VPS_URL, use_container_width=True)
@@ -48,7 +48,7 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SAMP = os.path.join(ROOT, "demo_samples")
 sp = os.path.join(SAMP, "samples.json")
 if os.path.exists(sp):
-    st.markdown("#### What the model classifies — 8 real Rakuten products")
+    st.markdown("#### What the model classifies - 8 real Rakuten products")
     samples = json.load(open(sp, encoding="utf-8"))
     cols = st.columns(4)
     for i, s in enumerate(samples):

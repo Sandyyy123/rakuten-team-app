@@ -1,4 +1,4 @@
-"""Data & EDA — Sandeep Grover's section. Uses the figures, captions and prose from the
+"""Data & EDA - Sandeep Grover's section. Uses the figures, captions and prose from the
 project report (Rakuten_Project_Report). This is the only fully-built page; the others are
 placeholders for the teammates' / later sections."""
 import os
@@ -21,13 +21,13 @@ st.markdown(
     "the correct category drives search, filtering, recommendation and merchandising. On **Rakuten France**, "
     "millions of third-party sellers upload products with a short title (*designation*), an optional free-text "
     "*description*, and a single product image. Assigning each listing to the correct product-type code by "
-    "hand does not scale, and seller-supplied labels are unreliable — titles are free-form and multilingual, "
+    "hand does not scale, and seller-supplied labels are unreliable - titles are free-form and multilingual, "
     "many products have no description, and some are mislabelled.")
 st.markdown(
-    "**Objective.** Predict the product-type code (`prdtypecode`) of each listing from its text and image — "
+    "**Objective.** Predict the product-type code (`prdtypecode`) of each listing from its text and image - "
     "the public Rakuten France Multimodal Product Data Classification challenge [1] (27 product-type codes). "
     "**Team project:** this report covers the business framing, data exploration and text pre-processing; "
-    "teammates' work follows — the models and multimodal fusion (Jonathan Vints), and the image branch "
+    "teammates' work follows - the models and multimodal fusion (Jonathan Vints), and the image branch "
     "(Thomas Maisch).")
 
 tiles([
@@ -47,17 +47,17 @@ st.caption("Duplicate analysis: 1,414 exact duplicate listings (1.7%) were found
 
 st.subheader("2.1 Class imbalance")
 st.markdown("The 27 categories are heavily imbalanced: the largest class holds **9,814** listings and the "
-            "smallest **693** — a **14.2-to-1** ratio. A chi-square goodness-of-fit test against a uniform "
+            "smallest **693** - a **14.2-to-1** ratio. A chi-square goodness-of-fit test against a uniform "
             "distribution gives **χ² = 35,282 (p < 0.001)**, so the imbalance is real, not sampling noise. "
             "Because the Rakuten challenge is scored on the **weighted-F1** score, weighted-F1 is the primary "
             "metric; macro-F1 is also tracked. Class weighting and stratified splits are applied.")
 st.image(os.path.join(RF, "cxd_classdist.png"), use_container_width=True)
 st.caption("Figure 1. Distribution of the 27 product categories, showing the 14.2-to-1 imbalance.")
 
-st.subheader("2.2 Missing descriptions — a Missing-Not-At-Random signal")
+st.subheader("2.2 Missing descriptions - a Missing-Not-At-Random signal")
 st.markdown("**35.5%** of listings have no description, and the missing rate is **not uniform** across "
             "categories. A chi-square test of independence between description present/absent and the class "
-            "gives **χ² = 42,953** and **Cramér's V = 0.72** (p < 0.001) — a strong association. The "
+            "gives **χ² = 42,953** and **Cramér's V = 0.72** (p < 0.001) - a strong association. The "
             "missingness is therefore **Missing-Not-At-Random (MNAR)**: its very presence is informative. "
             "Rather than dropping ~35% of the data, a binary `desc_missing` indicator is added so the model "
             "can use the absence as a feature.")
@@ -76,15 +76,15 @@ st.subheader("2.4 Language distribution")
 st.markdown("The text is predominantly French but contains a genuine English and German tail. **Wilson 95% "
             "confidence intervals**, which remain valid for the rare languages where the normal approximation "
             "breaks down, confirm that English and German are real sub-populations, not noise. This favours a "
-            "French/multilingual model in the modelling stage — **CamemBERT** (a French RoBERTa), FlauBERT or XLM-R.")
+            "French/multilingual model in the modelling stage - **CamemBERT** (a French RoBERTa), FlauBERT or XLM-R.")
 st.image(os.path.join(RF, "cxd_lang.png"), use_container_width=True)
 st.caption("Figure 4. Language distribution across listings: predominantly French, with an English and German tail.")
 
 st.subheader("2.5 Word frequency")
 st.markdown("**Left panel (raw counts):** the most frequent words are almost all stopwords (*de, la, et, "
-            "pour, les*) — they carry no category signal and are **removed with the nltk FR/EN/DE stopword lists**. "
+            "pour, les*) - they carry no category signal and are **removed with the nltk FR/EN/DE stopword lists**. "
             "**Right panel (after removal):** the most frequent remaining unigrams and bigrams are content words "
-            "(*cm, couleur, taille, piscine, eau*) — exactly the discriminative features TF-IDF keeps. The rarest "
+            "(*cm, couleur, taille, piscine, eau*) - exactly the discriminative features TF-IDF keeps. The rarest "
             "terms (one-off typos/serials) are dropped by the minimum-document-frequency threshold and the "
             "20,000-feature cap.")
 st.image(os.path.join(RF, "cxd_wordfreq.png"), use_container_width=True)
@@ -110,11 +110,11 @@ st.subheader("3.3 TF-IDF vectorization")
 st.markdown("TF-IDF (scikit-learn) turns each merged text into a numeric vector: term frequency × inverse "
             "document frequency (log of N over the number of documents containing the term). **Stopwords "
             "(*de, le, et*) are already removed, so they are never columns**; among the remaining content words, "
-            "common ones get a lower weight via IDF — e.g. *couleur* (18,030 docs → IDF 2.5) vs "
-            "*nintendo* (825 docs → IDF 5.6). Both **unigrams and bigrams** are used— *jeux video* is a "
-            "strong marker that neither *jeux* nor *video* conveys alone — and the vocabulary is capped at the "
+            "common ones get a lower weight via IDF - e.g. *couleur* (18,030 docs → IDF 2.5) vs "
+            "*nintendo* (825 docs → IDF 5.6). Both **unigrams and bigrams** are used -  *jeux video* is a "
+            "strong marker that neither *jeux* nor *video* conveys alone - and the vocabulary is capped at the "
             "**20,000** most useful terms out of ~280,000.")
-st.markdown("The result is a **sparse matrix** — rows = listings, columns = 20,000 terms, each cell a TF-IDF "
+st.markdown("The result is a **sparse matrix** - rows = listings, columns = 20,000 terms, each cell a TF-IDF "
             "score, ~99% zeros. Fitted on train only, then applied to both sets. The deliverable handed to the "
             "modelling stage is **~66,800 train / ~16,700 test** rows: 20,000 sparse TF-IDF features plus "
             "`desc_missing` and length features, over the 27 target categories.")

@@ -1,4 +1,4 @@
-"""Report — serves the actual project report we created (PDF + DOCX)."""
+"""Report - serves the actual project report we created (PDF + DOCX)."""
 import os, base64
 import streamlit as st
 from _shared import page, footer
@@ -9,7 +9,7 @@ PDF  = os.path.join(BASE, "downloads", "Rakuten_Project_Report.pdf")
 DOCX = os.path.join(BASE, "downloads", "Rakuten_Project_Report.docx")
 
 st.title("Project report")
-st.caption("Exploration, data-visualization and pre-processing report — Sandeep Grover · Jonathan Vints · "
+st.caption("Exploration, data-visualization and pre-processing report - Sandeep Grover · Jonathan Vints · "
            "Thomas Maisch. This is the actual report document (not a re-typed copy).")
 
 c1, c2 = st.columns(2)

@@ -1,4 +1,4 @@
-"""Presentation — Sandeep Grover's slide deck for the Data & EDA / pre-processing section."""
+"""Presentation - Sandeep Grover's slide deck for the Data & EDA / pre-processing section."""
 import os
 import streamlit as st
 import streamlit.components.v1 as components
