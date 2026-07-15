@@ -67,7 +67,7 @@ st.divider()
 st.subheader("Project sections")
 st.markdown(
     "- ✅ **Data & EDA** - business case, exploration & text pre-processing → TF-IDF *(Sandeep Grover)*\n"
-    "- ✅ **Text modelling** - TF-IDF baselines (NB / KNN / XGBoost) → XLM-RoBERTa · weighted-F1 0.87 *(Jonathan Vints)*\n"
+    "- ✅ **Text modelling** - TF-IDF baselines (KNN / XGBoost, BayesSearch) → XLM-RoBERTa · weighted-F1 0.87 *(Jonathan Vints)*\n"
     "- ✅ **Image processing & modelling** - crop → EfficientNet-B0 · weighted-F1 0.6515 *(Thomas Maisch)*\n"
     "- ✅ **Merge & model comparison** - fuse **Text + Image** → weighted-F1 0.9034 *(Thomas Maisch)*\n"
     "- 🔮 **Run the model** - live demo (local or hosted)\n"
