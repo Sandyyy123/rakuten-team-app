@@ -6,3 +6,4 @@ run.log
 .DS_Store
 models/camembert/
 models/*.pth
+.archive_pages/
