@@ -1,0 +1,667 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rakuten Multimodal - Presentation Minutes (tentative)</title>
+<style>
+  :root{
+    --s-color:#2563eb;   /* Sandeep - blue */
+    --j-color:#059669;   /* Jonathan - emerald */
+    --t-color:#d97706;   /* Thomas - amber */
+    --ink:#1f2937;
+    --muted:#6b7280;
+    --line:#e5e7eb;
+    --bg:#f8fafc;
+    --card:#ffffff;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    color:var(--ink);
+    background:var(--bg);
+    line-height:1.45;
+    font-size:14.5px;
+  }
+  .wrap{max-width:900px;margin:0 auto;padding:26px 22px 60px;}
+
+  /* Header */
+  header.doc{
+    border-radius:14px;
+    background:linear-gradient(135deg,#0f172a 0%,#1e293b 55%,#334155 100%);
+    color:#fff;
+    padding:24px 26px;
+    margin-bottom:14px;
+  }
+  header.doc h1{margin:0 0 4px;font-size:23px;letter-spacing:.2px;}
+  header.doc .sub{margin:0;color:#cbd5e1;font-size:13.5px;}
+  .totals{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px;}
+  .pill{
+    background:rgba(255,255,255,.10);
+    border:1px solid rgba(255,255,255,.18);
+    border-radius:9px;padding:8px 12px;font-size:12.5px;color:#e2e8f0;
+  }
+  .pill b{color:#fff;font-size:14px;}
+
+  /* Tentative banner */
+  .tentative{
+    display:flex;align-items:flex-start;gap:12px;
+    background:#fffbeb;border:1.5px solid #f59e0b;border-left:6px solid #d97706;
+    border-radius:11px;padding:12px 16px;margin:0 0 18px;
+    page-break-inside:avoid;
+  }
+  .tentative .tag{
+    background:#d97706;color:#fff;font-weight:800;font-size:11px;letter-spacing:.6px;
+    padding:4px 10px;border-radius:7px;white-space:nowrap;text-transform:uppercase;
+  }
+  .tentative .msg{font-size:13px;color:#92400e;}
+  .tentative .msg b{color:#7c2d12;}
+
+  /* Legend */
+  .legend{
+    display:flex;flex-wrap:wrap;gap:10px;margin:0 0 18px;
+  }
+  .legend .card{
+    flex:1 1 220px;background:var(--card);border:1px solid var(--line);
+    border-left:6px solid var(--line);border-radius:10px;padding:11px 14px;
+  }
+  .legend .card.s{border-left-color:var(--s-color);}
+  .legend .card.j{border-left-color:var(--j-color);}
+  .legend .card.t{border-left-color:var(--t-color);}
+  .legend .name{font-weight:700;font-size:14px;}
+  .legend .meta{color:var(--muted);font-size:12px;margin-top:2px;}
+  .dot{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:6px;vertical-align:middle;}
+  .dot.s{background:var(--s-color);}
+  .dot.j{background:var(--j-color);}
+  .dot.t{background:var(--t-color);}
+
+  .section-note{font-size:12px;color:var(--muted);margin:0 0 14px;}
+
+  /* Slide cards */
+  .slide{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-left:7px solid var(--line);
+    border-radius:11px;
+    padding:13px 16px 14px;
+    margin:0 0 11px;
+    page-break-inside:avoid;
+  }
+  .slide.s{border-left-color:var(--s-color);}
+  .slide.j{border-left-color:var(--j-color);}
+  .slide.t{border-left-color:var(--t-color);}
+  .slide-top{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap;}
+  .slide-title{font-size:15px;font-weight:700;margin:0;}
+  .slide-title .num{
+    display:inline-block;min-width:26px;text-align:center;
+    background:#eef2f7;border-radius:6px;padding:1px 6px;margin-right:8px;
+    font-size:12.5px;color:#334155;font-weight:700;
+  }
+  .badge{
+    font-size:11px;font-weight:700;color:#fff;border-radius:20px;padding:3px 10px;white-space:nowrap;
+  }
+  .badge.s{background:var(--s-color);}
+  .badge.j{background:var(--j-color);}
+  .badge.t{background:var(--t-color);}
+  .timing{
+    font-size:12px;color:var(--muted);margin:5px 0 8px;
+  }
+  .timing b{color:var(--ink);}
+  .timing .cum{
+    background:#f1f5f9;border-radius:6px;padding:1px 7px;margin-left:6px;color:#334155;font-weight:600;
+  }
+  ul.say{margin:4px 0 0;padding-left:18px;}
+  ul.say li{margin:3px 0;}
+
+  /* Handover */
+  .handover{
+    display:flex;align-items:center;gap:12px;
+    background:repeating-linear-gradient(45deg,#fff7ed,#fff7ed 12px,#fef3c7 12px,#fef3c7 24px);
+    border:1.5px dashed #b45309;
+    border-radius:11px;padding:12px 16px;margin:6px 0 13px;
+    page-break-inside:avoid;
+  }
+  .handover .arrow{font-size:19px;font-weight:800;color:#b45309;}
+  .handover .h-text{font-size:13px;}
+  .handover .h-text b{display:block;font-size:11px;letter-spacing:.5px;text-transform:uppercase;color:#92400e;margin-bottom:2px;}
+  .handover .quote{font-style:italic;color:#7c2d12;}
+
+  footer.doc{margin-top:24px;font-size:11.5px;color:var(--muted);text-align:center;}
+
+  @media print{
+    body{background:#fff;font-size:11.5px;}
+    .wrap{max-width:100%;padding:0 6mm;}
+    header.doc{background:#1e293b !important;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+    .slide,.handover,.legend .card,.pill,.tentative{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+    .slide{margin-bottom:7px;padding:9px 12px;}
+    @page{margin:12mm 10mm;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="doc">
+    <h1>Rakuten France - Multimodal Product Classification</h1>
+    <p class="sub">Project defence: speaker minutes and handover script &nbsp;&bull;&nbsp; 35 slides &nbsp;&bull;&nbsp; 3 presenters</p>
+    <div class="totals">
+      <div class="pill">Target <b>~20 min</b> (excl. Q&amp;A)</div>
+      <div class="pill">Scripted total <b>20:00</b> (1,200 s)</div>
+      <div class="pill"><span class="dot s"></span>Sandeep <b>6:40</b></div>
+      <div class="pill"><span class="dot j"></span>Jonathan <b>5:00</b></div>
+      <div class="pill"><span class="dot t"></span>Thomas <b>8:20</b></div>
+    </div>
+  </header>
+
+  <div class="tentative">
+    <span class="tag">Tentative</span>
+    <div class="msg"><b>Slide ownership and per-slide timing are fixed</b> for the team sync and open to confirmation.
+      The exact wording on every slide is each speaker's own - the talking points below are prompts, not a fixed script.
+      Everyone is free to say whatever they want on any of their slides.</div>
+  </div>
+
+  <div class="legend">
+    <div class="card s">
+      <div class="name"><span class="dot s"></span>Sandeep Grover</div>
+      <div class="meta">Slides 1-12 &bull; title, business case, EDA, missingness, languages, text pre-processing, TF-IDF &bull; subtotal 6:40</div>
+    </div>
+    <div class="card j">
+      <div class="name"><span class="dot j"></span>Jonathan Vints</div>
+      <div class="meta">Slides 13-20 &bull; classical baselines, SHAP, XLM-RoBERTa, class weights, text confusion matrix &bull; subtotal 5:00</div>
+    </div>
+    <div class="card t">
+      <div class="name"><span class="dot t"></span>Thomas Maisch</div>
+      <div class="meta">Slides 21-35 &bull; image branch, GradCAM, multimodal fusion, comparison, leaderboard, website, demo, thanks &bull; subtotal 8:20</div>
+    </div>
+  </div>
+
+  <p class="section-note">Cumulative times are the running clock at the END of each slide. Figure and result slides are where you gain or lose time, so keep the pace on those.</p>
+
+  <!-- ============ SANDEEP 1-12 ============ -->
+
+  <div class="slide s">
+    <div class="slide-top">
+      <p class="slide-title"><span class="num">1</span>Title</p>
+      <span class="badge s">Sandeep</span>
+    </div>
+    <div class="timing"><b>20 s</b><span class="cum">0:20</span></div>
+    <ul class="say">
+      <li>Introduce the three of us and the challenge: sort Rakuten France listings into 27 product-type codes.</li>
+      <li>Framing in one line: we combine the product title, the description and the image to predict the category.</li>
+      <li>Set expectations early - text does most of the work, the image adds a real lift, and fusion is our best model.</li>
+    </ul>
+  </div>
+
+  <div class="slide s">
+    <div class="slide-top">
+      <p class="slide-title"><span class="num">2</span>Business case</p>
+      <span class="badge s">Sandeep</span>
+    </div>
+    <div class="timing"><b>40 s</b><span class="cum">1:00</span></div>
+    <ul class="say">
+      <li>Rakuten's marketplace holds millions of seller-uploaded listings, and the category is often wrong or missing.</li>
+      <li>Wrong categories break search, filtering and recommendations, so this is a revenue lever, not just catalog tidy-up.</li>
+      <li>Automating the classification removes manual tagging and keeps the catalog consistent as it grows.</li>
+    </ul>
+  </div>
+
+  <div class="slide s">
+    <div class="slide-top">
+      <p class="slide-title"><span class="num">3</span>A real listing</p>
+      <span class="badge s">Sandeep</span>
+    </div>
+    <div class="timing"><b>35 s</b><span class="cum">1:35</span></div>
+    <ul class="say">
+      <li>Here is one actual listing: a short noisy title, a description that is sometimes long and full of HTML, and a product photo.</li>
+      <li>Point at the mess: mixed languages, marketing filler, and fields that are simply blank.</li>
+      <li>This is the raw material, and it explains why cleaning has to come before any modelling.</li>
+    </ul>
+  </div>
+
+  <div class="slide s">
+    <div class="slide-top">
+      <p class="slide-title"><span class="num">4</span>The project at a glance (pipeline flowchart)</p>
+      <span class="badge s">Sandeep</span>
+    </div>
+    <div class="timing"><b>45 s</b><span class="cum">2:20</span></div>
+    <ul class="say">
+      <li>Walk the flowchart left to right: raw listings, clean and deduplicate, then three tracks (text, image, fusion), then evaluation.</li>
+      <li>We model text and image separately first, then fuse the features late instead of training one giant end-to-end network.</li>
+      <li>Late fusion keeps each branch simple to train and to debug.</li>
+      <li>The whole pipeline runs end to end and is reproducible.</li>
+    </ul>
+  </div>
+
+  <div class="slide s">
+    <div class="slide-top">
+      <p class="slide-title"><span class="num">5</span>Class imbalance</p>
+      <span class="badge s">Sandeep</span>
+    </div>
+    <div class="timing"><b>35 s</b><span class="cum">2:55</span></div>
+    <ul class="say">
+      <li>We have 27 classes and they are far from balanced: the largest to smallest ratio is about 14.2 to 1.</li>
+      <li>A chi-square goodness-of-fit against a uniform distribution rejects uniformity strongly, so the imbalance is structural, not sampling noise.</li>
+      <li>Because of this we report weighted-F1 everywhere, since plain accuracy would flatter the big classes.</li>
+    </ul>
+  </div>
+
+  <div class="slide s">
+    <div class="slide-top">
+      <p class="slide-title"><span class="num">6</span>Missing data (MNAR)</p>
+      <span class="badge s">Sandeep</span>
+    </div>
+    <div class="timing"><b>35 s</b><span class="cum">3:30</span></div>
+    <ul class="say">
+      <li>About 35.5% of listings have no description at all, so this is a large gap, not an edge case.</li>
+      <li>The missingness is not random: it correlates with category, which makes it MNAR, missing not at random.</li>
+      <li>Since the gap itself is informative, we keep it as signal rather than dropping those rows.</li>
+    </ul>
+  </div>
+
+  <div class="slide s">
+    <div class="slide-top">
+      <p class="slide-title"><span class="num">7</span>Text length</p>
+      <span class="badge s">Sandeep</span>
+    </div>
+    <div class="timing"><b>28 s</b><span class="cum">3:58</span></div>
+    <ul class="say">
+      <li>Title and description lengths vary a lot from one category to another.</li>
+      <li>A Kruskal-Wallis test confirms the length distributions differ significantly across classes.</li>
+      <li>So the length of the text already carries information the models can use.</li>
+    </ul>
+  </div>
+
+  <div class="slide s">
+    <div class="slide-top">
+      <p class="slide-title"><span class="num">8</span>Languages</p>
+      <span class="badge s">Sandeep</span>
+    </div>
+    <div class="timing"><b>32 s</b><span class="cum">4:30</span></div>
+    <ul class="say">
+      <li>The catalog is mostly French, about 81%, with German, English and others mixed in.</li>
+      <li>We put Wilson confidence intervals on the language shares so the proportions are reported honestly, not as bare point estimates.</li>
+      <li>This multilingual reality is the reason we later pick a multilingual text backbone.</li>
+    </ul>
+  </div>
+
+  <div class="slide s">
+    <div class="slide-top">
+      <p class="slide-title"><span class="num">9</span>Text preprocessing pipeline</p>
+      <span class="badge s">Sandeep</span>
+    </div>
+    <div class="timing"><b>35 s</b><span class="cum">5:05</span></div>
+    <ul class="say">
+      <li>The cleaning chain: strip HTML, lowercase, remove punctuation and digits, handle accents, and remove stopwords.</li>
+      <li>We use multilingual stopword lists because of the language mix.</li>
+      <li>We keep two versions, a light clean and a heavy clean, and let the models tell us which one they prefer.</li>
+    </ul>
+  </div>
+
+  <div class="slide s">
+    <div class="slide-top">
+      <p class="slide-title"><span class="num">10</span>Word frequency</p>
+      <span class="badge s">Sandeep</span>
+    </div>
+    <div class="timing"><b>28 s</b><span class="cum">5:33</span></div>
+    <ul class="say">
+      <li>Before cleaning, the most frequent tokens are junk: HTML tags, stopwords and filler.</li>
+      <li>After removal, the frequent terms become real product words.</li>
+      <li>It is a quick visual check that the cleaning actually does its job.</li>
+    </ul>
+  </div>
+
+  <div class="slide s">
+    <div class="slide-top">
+      <p class="slide-title"><span class="num">11</span>TF-IDF matrix</p>
+      <span class="badge s">Sandeep</span>
+    </div>
+    <div class="timing"><b>35 s</b><span class="cum">6:08</span></div>
+    <ul class="say">
+      <li>We turn the cleaned text into a large sparse TF-IDF matrix.</li>
+      <li>That matrix is the input for our classical baselines.</li>
+      <li>TF-IDF is fast and interpretable, a good floor to beat before bringing in a transformer.</li>
+    </ul>
+  </div>
+
+  <div class="slide s">
+    <div class="slide-top">
+      <p class="slide-title"><span class="num">12</span>EDA summary</p>
+      <span class="badge s">Sandeep</span>
+    </div>
+    <div class="timing"><b>32 s</b><span class="cum">6:40</span></div>
+    <ul class="say">
+      <li>Recap: 27 imbalanced classes, heavy missingness that is MNAR, mostly French text, and plenty of noise.</li>
+      <li>These findings drove every modelling choice that follows.</li>
+      <li>One number to hold onto: we work on the deduplicated corpus, 83,502 listings after removing 1,414 duplicates from 84,916 raw.</li>
+    </ul>
+  </div>
+
+  <div class="handover">
+    <span class="arrow">&rarr;</span>
+    <div class="h-text">
+      <b>Handover &bull; Sandeep to Jonathan</b>
+      <span class="quote">"Those are the data findings. I'll hand over to Jonathan, who built our text models."</span>
+    </div>
+  </div>
+
+  <!-- ============ JONATHAN 13-20 ============ -->
+
+  <div class="slide j">
+    <div class="slide-top">
+      <p class="slide-title"><span class="num">13</span>Classical baselines (KNN / XGBoost)</p>
+      <span class="badge j">Jonathan</span>
+    </div>
+    <div class="timing"><b>42 s</b><span class="cum">7:22</span></div>
+    <ul class="say">
+      <li>Two baselines on the TF-IDF matrix: KNN reaches weighted-F1 0.72, XGBoost reaches 0.76.</li>
+      <li>XGBoost was tuned with a light 5-iteration BayesSearch, optimizing F1 directly, no MCC in the loop.</li>
+      <li>They are respectable, but classical models plateau around here, which is what pushed us to a transformer.</li>
+    </ul>
+  </div>
+
+  <div class="slide j">
+    <div class="slide-top">
+      <p class="slide-title"><span class="num">14</span>Classical confusion matrices (XGBoost 0.76 / KNN 0.72)</p>
+      <span class="badge j">Jonathan</span>
+    </div>
+    <div class="timing"><b>38 s</b><span class="cum">8:00</span></div>
+    <ul class="say">
+      <li>Side by side, both matrices show a decent diagonal, with XGBoost cleaner than KNN.</li>
+      <li>The errors cluster between genuinely similar product types rather than spreading randomly.</li>
+      <li>This tells us the ceiling here is the features, so a stronger language model is the next move.</li>
+    </ul>
+  </div>
+
+  <div class="slide j">
+    <div class="slide-top">
+      <p class="slide-title"><span class="num">15</span>SHAP - a hard case</p>
+      <span class="badge j">Jonathan</span>
+    </div>
+    <div class="timing"><b>38 s</b><span class="cum">8:38</span></div>
+    <ul class="say">
+      <li>SHAP breaks down one prediction the model gets wrong, token by token.</li>
+      <li>You can see which words pulled it toward the wrong class, usually ambiguous or shared terms.</li>
+      <li>It shows the failure is about overlapping vocabulary, not the model behaving randomly.</li>
+    </ul>
+  </div>
+
+  <div class="slide j">
+    <div class="slide-top">
+      <p class="slide-title"><span class="num">16</span>SHAP - a correct case</p>
+      <span class="badge j">Jonathan</span>
+    </div>
+    <div class="timing"><b>32 s</b><span class="cum">9:10</span></div>
+    <ul class="say">
+      <li>The same view on a correct prediction: the model leans on sensible, on-topic product keywords.</li>
+      <li>The tokens driving the decision are exactly the ones a human would use.</li>
+      <li>Together these two cases show the features are meaningful, not artifacts of the cleaning.</li>
+    </ul>
+  </div>
+
+  <div class="slide j">
+    <div class="slide-top">
+      <p class="slide-title"><span class="num">17</span>XLM-RoBERTa (0.87)</p>
+      <span class="badge j">Jonathan</span>
+    </div>
+    <div class="timing"><b>48 s</b><span class="cum">9:58</span></div>
+    <ul class="say">
+      <li>A multilingual transformer, fine-tuned, lifts weighted-F1 to 0.87, well above the classical baselines.</li>
+      <li>One finding to call out: light cleaning beats heavy cleaning here, 0.87 versus 0.82, the model prefers more raw context.</li>
+      <li>We set MAX_LEN to 256 tokens, which fits about 79% of listings without truncation, a good accuracy and speed trade-off.</li>
+      <li>This is our strongest single-modality model.</li>
+    </ul>
+  </div>
+
+  <div class="slide j">
+    <div class="slide-top">
+      <p class="slide-title"><span class="num">18</span>Text training dynamics</p>
+      <span class="badge j">Jonathan</span>
+    </div>
+    <div class="timing"><b>32 s</b><span class="cum">10:30</span></div>
+    <ul class="say">
+      <li>Training and validation curves stay close together, so there is no serious overfitting.</li>
+      <li>Early stopping keeps us at the best epoch.</li>
+      <li>The run is stable and reproducible.</li>
+    </ul>
+  </div>
+
+  <div class="slide j">
+    <div class="slide-top">
+      <p class="slide-title"><span class="num">19</span>Class weights</p>
+      <span class="badge j">Jonathan</span>
+    </div>
+    <div class="timing"><b>32 s</b><span class="cum">11:02</span></div>
+    <ul class="say">
+      <li>To handle the imbalance we weight the loss by class frequency during training.</li>
+      <li>This stops the big classes from dominating and helps recall on the rare ones.</li>
+      <li>It is a cleaner fix than resampling for a transformer at this scale.</li>
+    </ul>
+  </div>
+
+  <div class="slide j">
+    <div class="slide-top">
+      <p class="slide-title"><span class="num">20</span>Text confusion matrix</p>
+      <span class="badge j">Jonathan</span>
+    </div>
+    <div class="timing"><b>38 s</b><span class="cum">11:40</span></div>
+    <ul class="say">
+      <li>Strong diagonal: most of the 27 classes are predicted well.</li>
+      <li>The confusions that remain are between categories that really are similar.</li>
+      <li>This is the bar the image branch has to add something to, so over to Thomas for images and fusion.</li>
+    </ul>
+  </div>
+
+  <div class="handover">
+    <span class="arrow">&rarr;</span>
+    <div class="h-text">
+      <b>Handover &bull; Jonathan to Thomas</b>
+      <span class="quote">"Text is our strongest single view. Thomas will take you through the images and the fusion."</span>
+    </div>
+  </div>
+
+  <!-- ============ THOMAS 21-35 ============ -->
+
+  <div class="slide t">
+    <div class="slide-top">
+      <p class="slide-title"><span class="num">21</span>Image preprocessing (crop)</p>
+      <span class="badge t">Thomas</span>
+    </div>
+    <div class="timing"><b>30 s</b><span class="cum">12:10</span></div>
+    <ul class="say">
+      <li>Product photos often sit inside white borders and padding.</li>
+      <li>A corner-based crop trims that background and centers the actual product.</li>
+      <li>The result is cleaner, more consistent input for the CNN.</li>
+    </ul>
+  </div>
+
+  <div class="slide t">
+    <div class="slide-top">
+      <p class="slide-title"><span class="num">22</span>Backbone - EfficientNet-B0</p>
+      <span class="badge t">Thomas</span>
+    </div>
+    <div class="timing"><b>36 s</b><span class="cum">12:46</span></div>
+    <ul class="say">
+      <li>We compared backbones and picked EfficientNet-B0 for its balance of accuracy and compute.</li>
+      <li>It comes pretrained on ImageNet and we fine-tune it on our catalog.</li>
+      <li>It is lighter than ResNet50 but performs better on our data, as the next slide shows.</li>
+    </ul>
+  </div>
+
+  <div class="slide t">
+    <div class="slide-top">
+      <p class="slide-title"><span class="num">23</span>Tuning the image model (0.6515)</p>
+      <span class="badge t">Thomas</span>
+    </div>
+    <div class="timing"><b>36 s</b><span class="cum">13:22</span></div>
+    <ul class="say">
+      <li>Our best image-only model reaches weighted-F1 0.6515.</li>
+      <li>For context, a ResNet50 gets 0.5534 and a CNN trained from scratch only about 0.31.</li>
+      <li>So transfer learning plus careful tuning is what makes the image side usable.</li>
+    </ul>
+  </div>
+
+  <div class="slide t">
+    <div class="slide-top">
+      <p class="slide-title"><span class="num">24</span>Where the image model fails</p>
+      <span class="badge t">Thomas</span>
+    </div>
+    <div class="timing"><b>30 s</b><span class="cum">13:52</span></div>
+    <ul class="say">
+      <li>On its own the image confuses categories that look alike, such as different kinds of books or accessories.</li>
+      <li>Photo quality and framing vary a lot from one seller to the next.</li>
+      <li>The image cannot separate these on looks alone, which is the case for fusing it with text.</li>
+    </ul>
+  </div>
+
+  <div class="slide t">
+    <div class="slide-top">
+      <p class="slide-title"><span class="num">25</span>GradCAM</p>
+      <span class="badge t">Thomas</span>
+    </div>
+    <div class="timing"><b>32 s</b><span class="cum">14:24</span></div>
+    <ul class="say">
+      <li>GradCAM heatmaps show the model attending to the product itself, not the background.</li>
+      <li>It is reassuring evidence that the model learned to look in the right place.</li>
+      <li>So when it fails, it is genuine visual ambiguity rather than the model being distracted.</li>
+    </ul>
+  </div>
+
+  <div class="slide t">
+    <div class="slide-top">
+      <p class="slide-title"><span class="num">26</span>Multimodal fusion (0.8984)</p>
+      <span class="badge t">Thomas</span>
+    </div>
+    <div class="timing"><b>46 s</b><span class="cum">15:10</span></div>
+    <ul class="say">
+      <li>Our flagship result: late fusion of text and image features gives weighted-F1 0.8984, our best model.</li>
+      <li>We freeze both backbones and train only a small fusion head, about 0.4% of the parameters.</li>
+      <li>It converges by epoch 9, so it is cheap to train, and 0.8984 is a 5-seed mean, so it is stable rather than a lucky run.</li>
+      <li>It beats text alone at 0.87 and image alone at 0.65, the two views complement each other.</li>
+    </ul>
+  </div>
+
+  <div class="slide t">
+    <div class="slide-top">
+      <p class="slide-title"><span class="num">27</span>Fusion training dynamics</p>
+      <span class="badge t">Thomas</span>
+    </div>
+    <div class="timing"><b>32 s</b><span class="cum">15:42</span></div>
+    <ul class="say">
+      <li>Convergence is fast and clean because most of the network stays frozen.</li>
+      <li>Variance across the five seeds is very small.</li>
+      <li>Efficient to train and reproducible, both properties we can stand behind.</li>
+    </ul>
+  </div>
+
+  <div class="slide t">
+    <div class="slide-top">
+      <p class="slide-title"><span class="num">28</span>Fusion confusion matrix</p>
+      <span class="badge t">Thomas</span>
+    </div>
+    <div class="timing"><b>32 s</b><span class="cum">16:14</span></div>
+    <ul class="say">
+      <li>The diagonal is even stronger than for text alone.</li>
+      <li>Several classes that text used to confuse get cleaned up.</li>
+      <li>This is the image pulling its weight exactly where text was ambiguous.</li>
+    </ul>
+  </div>
+
+  <div class="slide t">
+    <div class="slide-top">
+      <p class="slide-title"><span class="num">29</span>Where the image helps</p>
+      <span class="badge t">Thomas</span>
+    </div>
+    <div class="timing"><b>32 s</b><span class="cum">16:46</span></div>
+    <ul class="say">
+      <li>With frozen features across five seeds: image scores 0.6787, text 0.8761, and fused 0.8985.</li>
+      <li>Per class, adding the image gives an average gain of about +0.0224 in F1.</li>
+      <li>The lift concentrates in the visually distinctive categories, which is where an image should help.</li>
+    </ul>
+  </div>
+
+  <div class="slide t">
+    <div class="slide-top">
+      <p class="slide-title"><span class="num">30</span>Text vs image vs fusion</p>
+      <span class="badge t">Thomas</span>
+    </div>
+    <div class="timing"><b>36 s</b><span class="cum">17:22</span></div>
+    <ul class="say">
+      <li>Side by side: text is the workhorse, the image is weaker on its own, and fusion beats both.</li>
+      <li>Fusion is also the cheapest of the three to train, thanks to the frozen features.</li>
+      <li>Best accuracy and lowest training cost together is the headline of the image and fusion work.</li>
+    </ul>
+  </div>
+
+  <div class="slide t">
+    <div class="slide-top">
+      <p class="slide-title"><span class="num">31</span>Where the project lands</p>
+      <span class="badge t">Thomas</span>
+    </div>
+    <div class="timing"><b>32 s</b><span class="cum">17:54</span></div>
+    <ul class="say">
+      <li>We clear both course benchmarks: the text benchmark at 0.8113 and the multimodal benchmark at 0.8144.</li>
+      <li>Our text model reaches 0.87 and fusion reaches 0.8984, comfortably above both lines.</li>
+      <li>Going multimodal was worth it, and the numbers back that up.</li>
+    </ul>
+  </div>
+
+  <div class="slide t">
+    <div class="slide-top">
+      <p class="slide-title"><span class="num">32</span>Public leaderboard (#15, 0.8902)</p>
+      <span class="badge t">Thomas</span>
+    </div>
+    <div class="timing"><b>36 s</b><span class="cum">18:30</span></div>
+    <ul class="say">
+      <li>On the official Rakuten public leaderboard we rank number 15, with a public score of 0.8902.</li>
+      <li>The 0.8902 public score lines up closely with our internal 0.8984, so the model generalizes rather than overfitting the split.</li>
+      <li>It is a competitive placing against a large field.</li>
+    </ul>
+  </div>
+
+  <div class="slide t">
+    <div class="slide-top">
+      <p class="slide-title"><span class="num">33</span>The team website</p>
+      <span class="badge t">Thomas</span>
+    </div>
+    <div class="timing"><b>30 s</b><span class="cum">19:00</span></div>
+    <ul class="say">
+      <li>Everything you have seen lives in a team website that walks through the data, the models and the results.</li>
+      <li>The website and its interactive demo are planned for future public deployment.</li>
+      <li>It brings the report and an interactive walkthrough of the project together in one place.</li>
+    </ul>
+  </div>
+
+  <div class="slide t">
+    <div class="slide-top">
+      <p class="slide-title"><span class="num">34</span>Live demo</p>
+      <span class="badge t">Thomas</span>
+    </div>
+    <div class="timing"><b>36 s</b><span class="cum">19:36</span></div>
+    <ul class="say">
+      <li>The demo is built to take a product title and description, optionally an image, and return the predicted category.</li>
+      <li>The website and this demo are planned for future public deployment, with the whole pipeline packaged in Docker for a reproducible, portable build.</li>
+      <li>The challenge submission has already been made: an independent, reproducible replication was completed and submitted, so the result behind the demo is verified.</li>
+    </ul>
+  </div>
+
+  <div class="slide t">
+    <div class="slide-top">
+      <p class="slide-title"><span class="num">35</span>Acknowledgements</p>
+      <span class="badge t">Thomas</span>
+    </div>
+    <div class="timing"><b>24 s</b><span class="cum">20:00</span></div>
+    <ul class="say">
+      <li>Thanks to our mentors and the coordinators for their guidance through the project.</li>
+      <li>Thanks to the Liora team.</li>
+      <li>Thanks to all of you, and we are happy to take your questions.</li>
+    </ul>
+  </div>
+
+  <footer class="doc">
+    Scripted running time 20:00 (1,200 s) &bull; Sandeep 6:40 &bull; Jonathan 5:00 &bull; Thomas 8:20 &bull; target ~20 min excluding Q&amp;A &bull; tentative: ownership and timing fixed, wording is each speaker's own
+  </footer>
+
+</div>
+</body>
+</html>
