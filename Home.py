@@ -1,7 +1,7 @@
 """Home - project landing. Data & EDA is fully built (Sandeep Grover); other sections are placeholders."""
 import os, base64
 import streamlit as st
-from _shared import page, footer, tiles, raku, CORAL
+from _shared import page, footer, tiles, raku, CORAL, fig
 
 page("Home", "🛒")
 R = raku(); s = R["stats"]
@@ -35,23 +35,12 @@ tiles([
     ("~81%",                             "French text"),
 ])
 
-st.subheader("How it works")
-st.markdown("""
-<div class="rk-mm">
-  <div class="rk-branches">
-    <div class="rk-mini" style="--c:#F0654A"><span class="ic">📝</span><b>Text branch</b>
-       <span class="t">title + description → clean → TF-IDF / XLM-RoBERTa</span></div>
-    <div class="rk-mini" style="--c:#F59E0B"><span class="ic">🖼️</span><b>Image branch</b>
-       <span class="t">product photo → crop → EfficientNet-B0</span></div>
-  </div>
-  <div class="rk-arrow">→</div>
-  <div class="rk-step" style="--c:#4F46E5"><div class="ic">🔗</div><b>Text + Image</b>
-     <span>late fusion</span></div>
-  <div class="rk-arrow">→</div>
-  <div class="rk-step" style="--c:#0EA5A4"><div class="ic">🎯</div><b>27 categories</b>
-     <span>predicted prdtypecode · best weighted-F1 0.8984</span></div>
-</div>
-""", unsafe_allow_html=True)
+st.subheader("How it works - and who did what")
+st.image(fig("pipeline_attrib.png"), use_container_width=True)
+st.caption("The full project pipeline, colour-coded by contributor: **Sandeep Grover** (data, EDA, text "
+           "preprocessing, website, presentation, report), **Jonathan Vints** (classical and transformer "
+           "text models), **Thomas Maisch** (image model, multimodal fusion, validation and the challenge "
+           "submission → public leaderboard #15, 0.8902).")
 st.divider()
 
 st.subheader("Final result")
