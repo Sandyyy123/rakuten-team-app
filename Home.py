@@ -1,4 +1,4 @@
-"""Home - project landing. Data & EDA is fully built (Sandeep Grover); other sections are placeholders."""
+"""Home - project landing. Full multi-page walkthrough of the Rakuten multimodal classification project."""
 import os, base64
 import streamlit as st
 from _shared import page, footer, tiles, raku, CORAL, fig

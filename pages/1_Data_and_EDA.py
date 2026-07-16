@@ -1,6 +1,5 @@
 """Data & EDA - Sandeep Grover's section. Uses the figures, captions and prose from the
-project report (Rakuten_Project_Report). This is the only fully-built page; the others are
-placeholders for the teammates' / later sections."""
+project report (Rakuten_Project_Report)."""
 import os
 import streamlit as st
 from _shared import page, footer, tiles, raku
