@@ -28,10 +28,10 @@ code{background:#0b1220;padding:2px 7px;border-radius:5px;color:#7dd3fc;font-siz
 @media print{body{background:#fff;color:#000}.qa,.tip,.gc{background:#f6f8fa;border-color:#ccc}h1,.member{-webkit-text-fill-color:#1e40af}.q{color:#1d4ed8}.gloss{grid-template-columns:1fr 1fr}}
 </style></head><body><div class="wrap">
 <h1>Deep Q&amp;A &amp; Glossary</h1>
-<div class="sub">Rakuten multimodal classification (Liora team project) &middot; Sandeep Grover, Jonathan Vints &amp; Thomas Maisch</div>
-<div class="tip"><b>How to use:</b> the page is organised into three member sections &ndash; <b>Sandeep Grover</b> (exploration &amp; text preprocessing), <b>Jonathan Vints</b> (text modelling) and <b>Thomas Maisch</b> (image &amp; multimodal fusion). Within each, questions are grouped by stage, and every answer explains the concept in full and, where there was a choice, says <b>why this and not the alternatives</b>. The orange <span style="color:#fdba74;">&#9878;</span> questions are the "why-this-not-that" deep dives. Sandeep's glossary follows his section. Statistics on the exploration data use the full training set (84,916 listings).</div>
+<div class="sub">Rakuten multimodal classification (Liora team project)</div>
+<div class="tip"><b>How to use:</b> the page is organised into three sections &ndash; <b>exploration &amp; text preprocessing</b>, <b>text modelling</b> and <b>image &amp; multimodal fusion</b>. Within each, questions are grouped by stage, and every answer explains the concept in full and, where there was a choice, says <b>why this and not the alternatives</b>. The orange <span style="color:#fdba74;">&#9878;</span> questions are the "why-this-not-that" deep dives. A glossary follows the first section. Statistics on the exploration data use the full training set (84,916 listings).</div>
 
-<div class="member">Exploration &amp; text preprocessing - Sandeep Grover</div>
+<div class="member">Exploration &amp; text preprocessing</div>
 <div class="mrole">The data, the metric, class imbalance, missingness, text length, languages, cleaning, the split, and the TF-IDF feature hand-off.</div>
 <h2>1 &middot; Business case &amp; the data</h2>
 <div class="qa"><div class="q">In one line, what is the problem?</div><div class="a">Predict a product's <b>category</b> (one of 27 <code>prdtypecode</code> values) from its <b>text</b> (title + description) and its <b>image</b>, so that Rakuten's search, filtering, recommendation and merchandising work.</div></div>
@@ -145,7 +145,7 @@ code{background:#0b1220;padding:2px 7px;border-radius:5px;color:#7dd3fc;font-siz
 <div class="gc"><div class="gt">prdtypecode</div><div class="gd">The target: the 27-value product-type code.</div></div>
 </div>
 
-<div class="member">Text modelling - Jonathan Vints</div>
+<div class="member">Text modelling</div>
 <div class="mrole">From TF-IDF classical baselines (KNN, XGBoost) to a fine-tuned multilingual transformer (XLM-RoBERTa). All scores are weighted-F1.</div>
 
 <h2>1 &middot; Classical baselines: TF-IDF, SVD, SMOTE</h2>
@@ -164,7 +164,7 @@ code{background:#0b1220;padding:2px 7px;border-radius:5px;color:#7dd3fc;font-siz
 <div class="qa w"><div class="q">What did you try that did not move the overall score, and did anything help a specific slice?</div><div class="a">Three things left the headline flat: <b>class weights</b>, feeding <b>designation and description as a sentence pair</b>, and a <b>linear-decay</b> learning-rate schedule. None raised overall weighted-F1, and that is reported honestly. The nuance worth stating: class weights did not help the aggregate but <b>did improve the hardest classes</b>, the same imbalance trade-off Thomas sees on the image side (a support-weighted metric can hide a rare-class gain). So class weighting stays a tool for macro-level fairness even when it does not move the weighted number.</div></div>
 <div class="qa"><div class="q">What did SHAP show, and how does the text branch feed the fusion?</div><div class="a"><b>SHAP</b> was run on XGBoost to attribute each prediction back to specific tokens, confirming that concrete brand and category words (not stopwords or artefacts) drive the classical model, a sanity check that the features are meaningful. For the deep model, the XLM-RoBERTa <b>text representation is the text branch</b> of the multimodal system: Thomas concatenates it with the EfficientNet-B0 image features in a late-fusion head (see the image and multimodal section below). This section produces the strong, multilingual text vector the fusion stage combines with vision.</div></div>
 
-<div class="member">Image &amp; multimodal fusion - Thomas Maisch</div>
+<div class="member">Image &amp; multimodal fusion</div>
 <div class="mrole">Image preprocessing, EfficientNet-B0, the 26-configuration ablation, GradCAM, and the multimodal fusion.</div>
 <div class="tip"><b>Canonical numbers:</b> this section uses the final <b>5-seed</b> results. Fusion weighted-F1 = <b>0.8984</b>; frozen-feature ablation: text <b>0.8761</b>, image <b>0.6787</b>, fused <b>0.8985</b>; image contribution <b>+0.0224</b>; EfficientNet-B0 <b>0.6515</b> vs ResNet50 benchmark <b>0.5534</b>; the fusion model converges by <b>epoch 9</b>. A few figures in the original prep draft (0.9034, +0.0103, one-epoch convergence) were superseded and are corrected here.</div>
 

@@ -1,4 +1,4 @@
-"""Q&A - anticipated examiner questions for the Data & EDA / pre-processing section."""
+"""Q&A - questions and answers across the whole project (all three members)."""
 import os
 import streamlit as st
 import streamlit.components.v1 as components
@@ -8,9 +8,9 @@ page("Q&A", "❓")
 BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 HTML = os.path.join(BASE, "slides", "qa.html")
 
-st.title("Q&A - anticipated questions")
-st.caption("Sandeep Grover · in-depth answers to likely examiner questions on the business case, data "
-           "exploration and text pre-processing (metrics, statistics, TF-IDF, and concepts).")
+st.title("Questions and answers")
+st.caption("In-depth questions and answers across the whole project: data and EDA, text pre-processing, "
+           "text modelling, and image and multimodal fusion.")
 
 with open(HTML, "rb") as f:
     st.download_button("⬇ Download Q&A (HTML)", f.read(),
