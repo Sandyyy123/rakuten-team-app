@@ -7,3 +7,4 @@ run.log
 models/camembert/
 models/*.pth
 .archive_pages/
+slides/*.bak_*
