@@ -1,6 +1,6 @@
 """Text modelling - Jonathan Vints (classical ML on TF-IDF -> XLM-RoBERTa)."""
 import streamlit as st
-from _shared import page, footer, tiles
+from _shared import page, footer, tiles, fig
 
 page("Text Modelling", "🤖")
 GH = "https://github.com/DataScientest-Studio/apr26_bds_int_rakuten/tree/Jonathan"
@@ -45,6 +45,10 @@ st.markdown(
     "- **Classical baselines** on the TF-IDF matrix: **K-Nearest-Neighbors** and **XGBoost**, both "
     "(tuned with grid / Bayesian search).")
 st.caption(f"Source: Rakutan_feature_engineering.py on Jonathan's branch -> {GH}")
+c1, c2 = st.columns(2)
+with c1: st.image(fig("jonathan/jv_cm_xgb.png"), use_container_width=True, caption="XGBoost - confusion matrix (weighted-F1 0.76)")
+with c2: st.image(fig("jonathan/jv_cm_knn.png"), use_container_width=True, caption="KNN - confusion matrix (weighted-F1 0.72)")
+st.image(fig("jonathan/jv_shap_charts.png"), use_container_width=True, caption="SHAP - the tokens driving XGBoost (top) and KNN (bottom) on a hard case: an Xbox sticker skin predicted as Console games (2462) instead of Gaming accessories (50).")
 
 st.subheader("2 · Deep learning - XLM-RoBERTa")
 st.markdown(
@@ -59,6 +63,10 @@ st.markdown(
     "- Tried without gain: class weights; designation/description as a **sentence pair**; linear-decay schedule.\n"
     "- **Best text model: weighted-F1 = 0.87**, well above the text benchmark (0.8113).")
 st.caption(f"Source: Rakutan_nn.py on Jonathan's branch -> {GH}")
+c3, c4 = st.columns(2)
+with c3: st.image(fig("jonathan/jv_f1_and_loss.png"), use_container_width=True, caption="XLM-RoBERTa - F1 keeps rising while val loss turns up; best around epoch 8 (F1-optimised stopping).")
+with c4: st.image(fig("jonathan/jv_cm_nn.png"), use_container_width=True, caption="XLM-RoBERTa - confusion matrix (weighted-F1 0.87)")
+st.image(fig("jonathan/jv_classweights.png"), use_container_width=True, caption="Class weights: per-class recall without (left) vs with (right). The hardest, rarest classes improve at a small cost to the best (0.87 vs 0.86).")
 
 st.markdown(
     '<div class="rk-win"><b>Hand-off to fusion.</b> This XLM-RoBERTa text representation is the text branch '

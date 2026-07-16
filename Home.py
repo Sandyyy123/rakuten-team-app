@@ -38,7 +38,7 @@ tiles([
 st.subheader("How it works - and who did what")
 st.image(fig("pipeline_attrib.png"), use_container_width=True)
 st.caption("The full project pipeline, colour-coded by contributor: **Sandeep Grover** (data, EDA, text "
-           "preprocessing, website, presentation, report), **Jonathan Vints** (classical and transformer "
+           "preprocessing, website, presentation, report, independent replication), **Jonathan Vints** (classical and transformer "
            "text models), **Thomas Maisch** (image model, multimodal fusion, validation and the challenge "
            "submission → public leaderboard #15, 0.8902).")
 st.divider()
@@ -46,6 +46,7 @@ st.divider()
 st.subheader("Final result")
 tiles([
     ("0.8984", "Multimodal weighted-F1"),
+    ("#15",    "Public leaderboard (0.8902)"),
     ("0.87",   "Text (XLM-RoBERTa)"),
     ("0.6515", "Image (EfficientNet-B0)"),
     ("0.8144", "Benchmark to beat"),
