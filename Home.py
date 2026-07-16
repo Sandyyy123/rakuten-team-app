@@ -49,14 +49,14 @@ st.markdown("""
      <span>late fusion</span></div>
   <div class="rk-arrow">→</div>
   <div class="rk-step" style="--c:#0EA5A4"><div class="ic">🎯</div><b>27 categories</b>
-     <span>predicted prdtypecode · best weighted-F1 0.9034</span></div>
+     <span>predicted prdtypecode · best weighted-F1 0.8984</span></div>
 </div>
 """, unsafe_allow_html=True)
 st.divider()
 
 st.subheader("Final result")
 tiles([
-    ("0.9034", "Multimodal weighted-F1"),
+    ("0.8984", "Multimodal weighted-F1"),
     ("0.87",   "Text (XLM-RoBERTa)"),
     ("0.6515", "Image (EfficientNet-B0)"),
     ("0.8144", "Benchmark to beat"),
@@ -69,12 +69,12 @@ st.markdown(
     "- ✅ **Data & EDA** - business case, exploration & text pre-processing → TF-IDF *(Sandeep Grover)*\n"
     "- ✅ **Text modelling** - TF-IDF baselines (KNN / XGBoost, BayesSearch) → XLM-RoBERTa · weighted-F1 0.87 *(Jonathan Vints)*\n"
     "- ✅ **Image processing & modelling** - crop → EfficientNet-B0 · weighted-F1 0.6515 *(Thomas Maisch)*\n"
-    "- ✅ **Merge & model comparison** - fuse **Text + Image** → weighted-F1 0.9034 *(Thomas Maisch)*\n"
+    "- ✅ **Merge & model comparison** - fuse **Text + Image** → weighted-F1 0.8984 *(Thomas Maisch)*\n"
     "- 🔮 **Run the model** - live demo (local or hosted)\n"
     "- 📄 **Report** - the written project report (PDF / Word)\n"
     "- ❓ **Q&A** - anticipated examiner questions with in-depth answers")
 
 st.markdown('<div class="rk-note"><b>Walkthrough:</b> open <b>Data &amp; EDA</b> for the full EDA + TF-IDF '
             'pipeline, then follow <b>Text → Image → Merge</b> to see how the two branches fuse into the '
-            '0.9034 multimodal model.</div>', unsafe_allow_html=True)
+            '0.8984 multimodal model.</div>', unsafe_allow_html=True)
 footer()
