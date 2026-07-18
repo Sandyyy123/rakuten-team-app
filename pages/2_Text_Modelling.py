@@ -64,7 +64,7 @@ st.markdown(
     "- **Best text model: weighted-F1 = 0.87**, well above the text benchmark (0.8113).")
 st.caption(f"Source: Rakutan_nn.py on Jonathan's branch -> {GH}")
 c3, c4 = st.columns(2)
-with c3: st.image(fig("jonathan/jv_f1_and_loss.png"), use_container_width=True, caption="XLM-RoBERTa - F1 keeps rising while val loss turns up; best around epoch 8 (F1-optimised stopping).")
+with c3: st.image(fig("jonathan/jv_f1_and_loss.png"), use_container_width=True, caption="XLM-RoBERTa - F1 keeps rising while val loss turns up; best around epoch 8 (we select the checkpoint on val F1).")
 with c4: st.image(fig("jonathan/jv_cm_nn.png"), use_container_width=True, caption="XLM-RoBERTa - confusion matrix (weighted-F1 0.87)")
 st.image(fig("jonathan/jv_classweights.png"), use_container_width=True, caption="Class weights: per-class recall without (left) vs with (right). The hardest, rarest classes improve at a small cost to the best (0.87 vs 0.86).")
 

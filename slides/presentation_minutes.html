@@ -308,7 +308,7 @@
       <li>Before cleaning, the most frequent tokens are junk: HTML tags, stopwords and filler.</li>
       <li>After removal, the frequent terms become real product words.</li>
       <li>It is a quick visual check that the cleaning actually does its job.</li>
-    </ul><p class="script-lbl">Script (say this)</p><ul class="say-script"><li>This shows why cleaning matters.</li><li>On the left, the most frequent raw words are all stopwords like de and la, which carry no category signal.</li><li>On the right, after removal, the top terms are real content words like couleur and piscine, and those are exactly the features TF-IDF keeps.</li></ul>
+    </ul><p class="script-lbl">Script (say this)</p><ul class="say-script"><li>This shows why cleaning matters.</li><li>In the top panel, the most frequent raw words are all stopwords like de and la, which carry no category signal.</li><li>In the bottom panel, after removal, the top terms are real content words like couleur and piscine, and those are exactly the features TF-IDF keeps.</li></ul>
   </div>
 
   <div class="slide s">
@@ -410,7 +410,7 @@
       <li>Training and validation curves stay close together, so there is no serious overfitting.</li>
       <li>Early stopping keeps us at the best epoch.</li>
       <li>The run is stable and reproducible.</li>
-    </ul><p class="script-lbl">Script (say this)</p><ul class="say-script"><li>This shows an important subtlety in training.</li><li>The F1 score keeps improving up to about epoch 8, while the validation loss bottoms out earlier and then rises.</li><li>So if we early-stop on loss we stop too soon; optimising for F1 instead gives us the better model.</li><li>It is a good reminder that the metric you stop on matters.</li></ul>
+    </ul><p class="script-lbl">Script (say this)</p><ul class="say-script"><li>This shows an important subtlety in training.</li><li>The F1 score keeps improving up to about epoch 8, while the validation loss bottoms out earlier and then rises.</li><li>So if we early-stop on loss we stop too soon; selecting the checkpoint on F1 instead gives us the better model.</li><li>It is a good reminder that the metric you stop on matters.</li></ul>
   </div>
 
   <div class="slide j">
