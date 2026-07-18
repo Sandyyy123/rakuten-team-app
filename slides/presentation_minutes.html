@@ -230,7 +230,7 @@
       <li>We model text and image separately first, then fuse the features late instead of training one giant end-to-end network.</li>
       <li>Late fusion keeps each branch simple to train and to debug.</li>
       <li>The whole pipeline runs end to end and is reproducible.</li>
-    </ul><p class="script-lbl">Script (say this)</p><ul class="say-script"><li>This is our whole pipeline in one picture, colour-coded by who did what.</li><li>We start with the raw listings; we clean the text and remove 1,414 exact duplicates to get one dataset of 83,502 products.</li><li>From there, three tracks run in parallel: the classical and transformer text models, the image model, and the fusion that combines them.</li><li>We finish by validating on a held-out test set, and I'll come back to each block as we go.</li></ul>
+    </ul><p class="script-lbl">Script (say this)</p><ul class="say-script"><li>This is our whole pipeline in one picture.</li><li>We start with the raw listings; we clean the text and remove 1,414 exact duplicates to get one dataset of 83,502 products.</li><li>From there, three tracks run in parallel: the classical and transformer text models, the image model, and the fusion that combines them.</li></ul>
   </div>
 
   <div class="slide s">
@@ -324,19 +324,6 @@
     </ul><p class="script-lbl">Script (say this)</p><ul class="say-script"><li>TF-IDF turns each listing into a vector: term frequency times inverse document frequency, so rare, informative words score high and filler scores near zero.</li><li>The result is a sparse matrix, rows are listings, columns are twenty thousand terms, about 99 percent zeros.</li><li>Crucially, it is fit on the training set only, then applied to test, so the test set is unseen at fit time.</li></ul>
   </div>
 
-  <div class="slide s">
-    <div class="slide-top">
-      <p class="slide-title"><span class="num">12</span>EDA summary</p>
-      <span class="badge s">Sandeep</span>
-    </div>
-    <div class="timing"><b>32 s</b><span class="cum">6:40</span></div>
-    <p class="cues-lbl">Cues</p><ul class="say">
-      <li>Recap: 27 imbalanced classes, heavy missingness that is MAR, mostly French text, and plenty of noise.</li>
-      <li>These findings drove every modelling choice that follows.</li>
-      <li>One number to hold onto: we work on the deduplicated corpus, 83,502 listings after removing 1,414 duplicates from 84,916 raw.</li>
-    </ul><p class="script-lbl">Script (say this)</p><ul class="say-script"><li>To summarise the exploration: a fourteen-to-one class imbalance, 35 percent missing descriptions that are informative, HTML in most descriptions, length that varies by class, 1,414 exact duplicates removed to leave 83,502 rows, and a multilingual corpus.</li><li>Each finding drives a concrete decision: weighted-F1, a missing flag, HTML stripping, length features, and a multilingual model.</li><li>That is the data ready for modelling.</li><li>I'll hand over to Jonathan, who built our text models.</li></ul>
-  </div>
-
   <div class="handover">
     <span class="arrow">&rarr;</span>
     <div class="h-text">
@@ -349,10 +336,10 @@
 
   <div class="slide j">
     <div class="slide-top">
-      <p class="slide-title"><span class="num">13</span>Classical baselines (KNN / XGBoost)</p>
+      <p class="slide-title"><span class="num">12</span>Classical baselines (KNN / XGBoost)</p>
       <span class="badge j">Jonathan</span>
     </div>
-    <div class="timing"><b>42 s</b><span class="cum">7:22</span></div>
+    <div class="timing"><b>42 s</b><span class="cum">6:50</span></div>
     <p class="cues-lbl">Cues</p><ul class="say">
       <li>Two baselines on the TF-IDF matrix: KNN reaches weighted-F1 0.72, XGBoost reaches 0.76.</li>
       <li>XGBoost was tuned with a light 5-iteration BayesSearch, optimizing F1 directly, no MCC in the loop.</li>
@@ -362,10 +349,10 @@
 
   <div class="slide j">
     <div class="slide-top">
-      <p class="slide-title"><span class="num">14</span>Classical confusion matrices (XGBoost 0.76 / KNN 0.72)</p>
+      <p class="slide-title"><span class="num">13</span>Classical confusion matrices (XGBoost 0.76 / KNN 0.72)</p>
       <span class="badge j">Jonathan</span>
     </div>
-    <div class="timing"><b>38 s</b><span class="cum">8:00</span></div>
+    <div class="timing"><b>38 s</b><span class="cum">7:28</span></div>
     <p class="cues-lbl">Cues</p><ul class="say">
       <li>Side by side, both matrices show a decent diagonal, with XGBoost cleaner than KNN.</li>
       <li>The errors cluster between genuinely similar product types rather than spreading randomly.</li>
@@ -375,10 +362,10 @@
 
   <div class="slide j">
     <div class="slide-top">
-      <p class="slide-title"><span class="num">15</span>SHAP - a hard case</p>
+      <p class="slide-title"><span class="num">14</span>SHAP - a hard case</p>
       <span class="badge j">Jonathan</span>
     </div>
-    <div class="timing"><b>38 s</b><span class="cum">8:38</span></div>
+    <div class="timing"><b>38 s</b><span class="cum">8:06</span></div>
     <p class="cues-lbl">Cues</p><ul class="say">
       <li>SHAP breaks down one prediction the model gets wrong, token by token.</li>
       <li>You can see which words pulled it toward the wrong class, usually ambiguous or shared terms.</li>
@@ -388,10 +375,10 @@
 
   <div class="slide j">
     <div class="slide-top">
-      <p class="slide-title"><span class="num">16</span>SHAP - a correct case</p>
+      <p class="slide-title"><span class="num">15</span>SHAP - a correct case</p>
       <span class="badge j">Jonathan</span>
     </div>
-    <div class="timing"><b>32 s</b><span class="cum">9:10</span></div>
+    <div class="timing"><b>32 s</b><span class="cum">8:38</span></div>
     <p class="cues-lbl">Cues</p><ul class="say">
       <li>The same view on a correct prediction: the model leans on sensible, on-topic product keywords.</li>
       <li>The tokens driving the decision are exactly the ones a human would use.</li>
@@ -401,10 +388,10 @@
 
   <div class="slide j">
     <div class="slide-top">
-      <p class="slide-title"><span class="num">17</span>XLM-RoBERTa (0.87)</p>
+      <p class="slide-title"><span class="num">16</span>XLM-RoBERTa (0.87)</p>
       <span class="badge j">Jonathan</span>
     </div>
-    <div class="timing"><b>48 s</b><span class="cum">9:58</span></div>
+    <div class="timing"><b>48 s</b><span class="cum">9:26</span></div>
     <p class="cues-lbl">Cues</p><ul class="say">
       <li>A multilingual transformer, fine-tuned, lifts weighted-F1 to 0.87, well above the classical baselines.</li>
       <li>One finding to call out: light cleaning beats heavy cleaning here, 0.87 versus 0.82, the model prefers more raw context.</li>
@@ -415,10 +402,10 @@
 
   <div class="slide j">
     <div class="slide-top">
-      <p class="slide-title"><span class="num">18</span>Text training dynamics</p>
+      <p class="slide-title"><span class="num">17</span>Text training dynamics</p>
       <span class="badge j">Jonathan</span>
     </div>
-    <div class="timing"><b>32 s</b><span class="cum">10:30</span></div>
+    <div class="timing"><b>32 s</b><span class="cum">9:58</span></div>
     <p class="cues-lbl">Cues</p><ul class="say">
       <li>Training and validation curves stay close together, so there is no serious overfitting.</li>
       <li>Early stopping keeps us at the best epoch.</li>
@@ -428,10 +415,10 @@
 
   <div class="slide j">
     <div class="slide-top">
-      <p class="slide-title"><span class="num">19</span>Class weights</p>
+      <p class="slide-title"><span class="num">18</span>Class weights</p>
       <span class="badge j">Jonathan</span>
     </div>
-    <div class="timing"><b>32 s</b><span class="cum">11:02</span></div>
+    <div class="timing"><b>32 s</b><span class="cum">10:30</span></div>
     <p class="cues-lbl">Cues</p><ul class="say">
       <li>To handle the imbalance we weight the loss by class frequency during training.</li>
       <li>This stops the big classes from dominating and helps recall on the rare ones.</li>
@@ -441,10 +428,10 @@
 
   <div class="slide j">
     <div class="slide-top">
-      <p class="slide-title"><span class="num">20</span>Text confusion matrix</p>
+      <p class="slide-title"><span class="num">19</span>Text confusion matrix</p>
       <span class="badge j">Jonathan</span>
     </div>
-    <div class="timing"><b>38 s</b><span class="cum">11:40</span></div>
+    <div class="timing"><b>38 s</b><span class="cum">11:08</span></div>
     <p class="cues-lbl">Cues</p><ul class="say">
       <li>Strong diagonal: most of the 27 classes are predicted well.</li>
       <li>The confusions that remain are between categories that really are similar.</li>
@@ -464,10 +451,10 @@
 
   <div class="slide t">
     <div class="slide-top">
-      <p class="slide-title"><span class="num">21</span>Image preprocessing (crop)</p>
+      <p class="slide-title"><span class="num">20</span>Image preprocessing (crop)</p>
       <span class="badge t">Thomas</span>
     </div>
-    <div class="timing"><b>30 s</b><span class="cum">12:10</span></div>
+    <div class="timing"><b>30 s</b><span class="cum">11:38</span></div>
     <p class="cues-lbl">Cues</p><ul class="say">
       <li>Product photos often sit inside white borders and padding.</li>
       <li>A corner-based crop trims that background and centers the actual product.</li>
@@ -477,10 +464,10 @@
 
   <div class="slide t">
     <div class="slide-top">
-      <p class="slide-title"><span class="num">22</span>Backbone - EfficientNet-B0</p>
+      <p class="slide-title"><span class="num">21</span>Backbone - EfficientNet-B0</p>
       <span class="badge t">Thomas</span>
     </div>
-    <div class="timing"><b>36 s</b><span class="cum">12:46</span></div>
+    <div class="timing"><b>36 s</b><span class="cum">12:14</span></div>
     <p class="cues-lbl">Cues</p><ul class="say">
       <li>We compared backbones and picked EfficientNet-B0 for its balance of accuracy and compute.</li>
       <li>It comes pretrained on ImageNet and we fine-tune it on our catalog.</li>
@@ -490,10 +477,10 @@
 
   <div class="slide t">
     <div class="slide-top">
-      <p class="slide-title"><span class="num">23</span>Tuning the image model (0.6515)</p>
+      <p class="slide-title"><span class="num">22</span>Tuning the image model (0.6515)</p>
       <span class="badge t">Thomas</span>
     </div>
-    <div class="timing"><b>36 s</b><span class="cum">13:22</span></div>
+    <div class="timing"><b>36 s</b><span class="cum">12:50</span></div>
     <p class="cues-lbl">Cues</p><ul class="say">
       <li>Our best image-only model reaches weighted-F1 0.6515.</li>
       <li>For context, a ResNet50 gets 0.5534 and a CNN trained from scratch only about 0.31.</li>
@@ -503,10 +490,10 @@
 
   <div class="slide t">
     <div class="slide-top">
-      <p class="slide-title"><span class="num">24</span>Where the image model fails</p>
+      <p class="slide-title"><span class="num">23</span>Where the image model fails</p>
       <span class="badge t">Thomas</span>
     </div>
-    <div class="timing"><b>30 s</b><span class="cum">13:52</span></div>
+    <div class="timing"><b>30 s</b><span class="cum">13:20</span></div>
     <p class="cues-lbl">Cues</p><ul class="say">
       <li>On its own the image confuses categories that look alike, such as different kinds of books or accessories.</li>
       <li>Photo quality and framing vary a lot from one seller to the next.</li>
@@ -516,10 +503,10 @@
 
   <div class="slide t">
     <div class="slide-top">
-      <p class="slide-title"><span class="num">25</span>GradCAM</p>
+      <p class="slide-title"><span class="num">24</span>GradCAM</p>
       <span class="badge t">Thomas</span>
     </div>
-    <div class="timing"><b>32 s</b><span class="cum">14:24</span></div>
+    <div class="timing"><b>32 s</b><span class="cum">13:52</span></div>
     <p class="cues-lbl">Cues</p><ul class="say">
       <li>GradCAM heatmaps show the model attending to the product itself, not the background.</li>
       <li>It is reassuring evidence that the model learned to look in the right place.</li>
@@ -529,10 +516,10 @@
 
   <div class="slide t">
     <div class="slide-top">
-      <p class="slide-title"><span class="num">26</span>Multimodal fusion (0.8984)</p>
+      <p class="slide-title"><span class="num">25</span>Multimodal fusion (0.8984)</p>
       <span class="badge t">Thomas</span>
     </div>
-    <div class="timing"><b>46 s</b><span class="cum">15:10</span></div>
+    <div class="timing"><b>46 s</b><span class="cum">14:38</span></div>
     <p class="cues-lbl">Cues</p><ul class="say">
       <li>Our flagship result: late fusion of text and image features gives weighted-F1 0.8984, our best model.</li>
       <li>We freeze both backbones and train only a small fusion head, about 0.4% of the parameters.</li>
@@ -543,10 +530,10 @@
 
   <div class="slide t">
     <div class="slide-top">
-      <p class="slide-title"><span class="num">27</span>Fusion training dynamics</p>
+      <p class="slide-title"><span class="num">26</span>Fusion training dynamics</p>
       <span class="badge t">Thomas</span>
     </div>
-    <div class="timing"><b>32 s</b><span class="cum">15:42</span></div>
+    <div class="timing"><b>32 s</b><span class="cum">15:10</span></div>
     <p class="cues-lbl">Cues</p><ul class="say">
       <li>Convergence is fast and clean because most of the network stays frozen.</li>
       <li>Variance across the five seeds is very small.</li>
@@ -556,10 +543,10 @@
 
   <div class="slide t">
     <div class="slide-top">
-      <p class="slide-title"><span class="num">28</span>Fusion confusion matrix</p>
+      <p class="slide-title"><span class="num">27</span>Fusion confusion matrix</p>
       <span class="badge t">Thomas</span>
     </div>
-    <div class="timing"><b>32 s</b><span class="cum">16:14</span></div>
+    <div class="timing"><b>32 s</b><span class="cum">15:42</span></div>
     <p class="cues-lbl">Cues</p><ul class="say">
       <li>The diagonal is even stronger than for text alone.</li>
       <li>Several classes that text used to confuse get cleaned up.</li>
@@ -569,10 +556,10 @@
 
   <div class="slide t">
     <div class="slide-top">
-      <p class="slide-title"><span class="num">29</span>Where the image helps</p>
+      <p class="slide-title"><span class="num">28</span>Where the image helps</p>
       <span class="badge t">Thomas</span>
     </div>
-    <div class="timing"><b>32 s</b><span class="cum">16:46</span></div>
+    <div class="timing"><b>32 s</b><span class="cum">16:14</span></div>
     <p class="cues-lbl">Cues</p><ul class="say">
       <li>With frozen features across five seeds: image scores 0.6787, text 0.8761, and fused 0.8985.</li>
       <li>Per class, adding the image gives an average gain of about +0.0224 in F1.</li>
@@ -582,10 +569,10 @@
 
   <div class="slide t">
     <div class="slide-top">
-      <p class="slide-title"><span class="num">30</span>Text vs image vs fusion</p>
+      <p class="slide-title"><span class="num">29</span>Text vs image vs fusion</p>
       <span class="badge t">Thomas</span>
     </div>
-    <div class="timing"><b>36 s</b><span class="cum">17:22</span></div>
+    <div class="timing"><b>36 s</b><span class="cum">16:50</span></div>
     <p class="cues-lbl">Cues</p><ul class="say">
       <li>Side by side: text is the workhorse, the image is weaker on its own, and fusion beats both.</li>
       <li>Fusion is also the cheapest of the three to train, thanks to the frozen features.</li>
@@ -595,10 +582,10 @@
 
   <div class="slide t">
     <div class="slide-top">
-      <p class="slide-title"><span class="num">31</span>Where the project lands</p>
+      <p class="slide-title"><span class="num">30</span>Where the project lands</p>
       <span class="badge t">Thomas</span>
     </div>
-    <div class="timing"><b>32 s</b><span class="cum">17:54</span></div>
+    <div class="timing"><b>32 s</b><span class="cum">17:22</span></div>
     <p class="cues-lbl">Cues</p><ul class="say">
       <li>We clear both course benchmarks: the text benchmark at 0.8113 and the multimodal benchmark at 0.8144.</li>
       <li>Our text model reaches 0.87 and fusion reaches 0.8984, comfortably above both lines.</li>
@@ -608,10 +595,10 @@
 
   <div class="slide t">
     <div class="slide-top">
-      <p class="slide-title"><span class="num">32</span>Public leaderboard (#16, 0.8902)</p>
+      <p class="slide-title"><span class="num">31</span>Public leaderboard (#16, 0.8902)</p>
       <span class="badge t">Thomas</span>
     </div>
-    <div class="timing"><b>36 s</b><span class="cum">18:30</span></div>
+    <div class="timing"><b>36 s</b><span class="cum">17:58</span></div>
     <p class="cues-lbl">Cues</p><ul class="say">
       <li>On the official Rakuten public leaderboard we rank number 16, with a public score of 0.8902.</li>
       <li>The 0.8902 public score lines up closely with our internal 0.8984, so the model generalizes rather than overfitting the split.</li>
@@ -621,23 +608,23 @@
 
   <div class="slide t">
     <div class="slide-top">
-      <p class="slide-title"><span class="num">33</span>The team website</p>
+      <p class="slide-title"><span class="num">32</span>The team website</p>
       <span class="badge t">Thomas</span>
     </div>
-    <div class="timing"><b>30 s</b><span class="cum">19:00</span></div>
+    <div class="timing"><b>30 s</b><span class="cum">18:28</span></div>
     <p class="cues-lbl">Cues</p><ul class="say">
       <li>Everything you have seen lives in a team website that walks through the data, the models and the results.</li>
       <li>The website and its interactive demo are planned for future public deployment.</li>
       <li>It brings the report and an interactive walkthrough of the project together in one place.</li>
-    </ul><p class="script-lbl">Script (say this)</p><ul class="say-script"><li>Alongside the models, we built an interactive website, one Streamlit page per stage, colour-coded by contributor, so anyone can walk through the whole project.</li><li>It is planned for future public deployment, and an independent, reproducible verification of our numbers is in progress on the side.</li></ul>
+    </ul><p class="script-lbl">Script (say this)</p><ul class="say-script"><li>Alongside the models, we built an interactive website, one Streamlit page per stage, so anyone can walk through the whole project.</li><li>It is planned for future public deployment.</li></ul>
   </div>
 
   <div class="slide t">
     <div class="slide-top">
-      <p class="slide-title"><span class="num">34</span>Live demo</p>
+      <p class="slide-title"><span class="num">33</span>Live demo</p>
       <span class="badge t">Thomas</span>
     </div>
-    <div class="timing"><b>36 s</b><span class="cum">19:36</span></div>
+    <div class="timing"><b>36 s</b><span class="cum">19:04</span></div>
     <p class="cues-lbl">Cues</p><ul class="say">
       <li>The demo is built to take a product title and description, optionally an image, and return the predicted category.</li>
       <li>The website and this demo are planned for future public deployment, with the whole pipeline packaged in Docker for a reproducible, portable build.</li>
@@ -647,10 +634,10 @@
 
   <div class="slide t">
     <div class="slide-top">
-      <p class="slide-title"><span class="num">35</span>Acknowledgements</p>
+      <p class="slide-title"><span class="num">34</span>Acknowledgements</p>
       <span class="badge t">Thomas</span>
     </div>
-    <div class="timing"><b>24 s</b><span class="cum">20:00</span></div>
+    <div class="timing"><b>24 s</b><span class="cum">19:28</span></div>
     <p class="cues-lbl">Cues</p><ul class="say">
       <li>Thanks to our mentors and the coordinators for their guidance through the project.</li>
       <li>Thanks to the Liora team.</li>
