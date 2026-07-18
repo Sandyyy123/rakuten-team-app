@@ -23,14 +23,14 @@ tiles([
 
 st.markdown(
     '<div class="rk-note"><b>Preprocessing: shared, then per-model.</b> Cleaning is done once: merge title + '
-    'description, strip HTML (BeautifulSoup), URLs and e-mails, remove the 1,414 exact duplicates, one '
+    'description, strip HTML (regex), URLs and e-mails, remove the 1,414 exact duplicates, one '
     'stratified 80/20 split. The <b>representation</b> is then built per model, because each architecture '
     'needs different input.</div>', unsafe_allow_html=True)
 st.markdown(
     "| Step | Classical (KNN/XGBoost) | Transformer (XLM-RoBERTa) |\n|---|---|---|\n"
     "| Lowercase | yes | **no** |\n| Remove stopwords | yes (FR/EN/DE) | **no** |\n"
     "| Fold accents | **no** (lexical in French) | **no** |\n"
-    "| Stemming | yes (`text`) | **no** (`text_nostem`) |\n"
+    "| Stemming | **no** | **no** |\n"
     "| Tokenizer | TweetTokenizer | **model's own SentencePiece** |\n"
     "| Vectorisation | TF-IDF 20k -> SVD -> SMOTE | none, the model embeds |\n")
 st.caption("Why opposite: TF-IDF only counts tokens, so stopwords are noise and Housse/housse would split one "
@@ -39,7 +39,7 @@ st.caption("Why opposite: TF-IDF only counts tokens, so stopwords are noise and 
 
 st.subheader("1 · Feature engineering & classical models")
 st.markdown(
-    "- **Combine** `designation` + `description`; keep French/English rows; strip **HTML** (BeautifulSoup) "
+    "- **Combine** `designation` + `description`; keep French/English rows; strip **HTML** (regex) "
     "and **e-mail** noise; tokenize.\n"
     "- **Vectorize** with `TfidfVectorizer`; balance the 27 classes with **SMOTE**.\n"
     "- **Classical baselines** on the TF-IDF matrix: **K-Nearest-Neighbors** and **XGBoost**, both "

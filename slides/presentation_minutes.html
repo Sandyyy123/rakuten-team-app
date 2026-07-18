@@ -248,13 +248,13 @@
 
   <div class="slide s">
     <div class="slide-top">
-      <p class="slide-title"><span class="num">6</span>Missing data (MNAR)</p>
+      <p class="slide-title"><span class="num">6</span>Missing data (MAR)</p>
       <span class="badge s">Sandeep</span>
     </div>
     <div class="timing"><b>35 s</b><span class="cum">3:30</span></div>
     <p class="cues-lbl">Cues</p><ul class="say">
       <li>About 35.5% of listings have no description at all, so this is a large gap, not an edge case.</li>
-      <li>The missingness is not random: it correlates with category, which makes it MNAR, missing not at random.</li>
+      <li>The missingness is not random: it correlates with the observed category, which makes it MAR, missing at random.</li>
       <li>Since the gap itself is informative, we keep it as signal rather than dropping those rows.</li>
     </ul><p class="script-lbl">Script (say this)</p><ul class="say-script"><li>About 35 percent of products have no description, and the missing rate varies strongly by category, so a chi-square test shows the missingness is informative, not random.</li><li>Rather than drop those rows, we add a simple description-missing flag, so the model can use the absence of a description as a signal in itself.</li></ul>
   </div>
@@ -331,7 +331,7 @@
     </div>
     <div class="timing"><b>32 s</b><span class="cum">6:40</span></div>
     <p class="cues-lbl">Cues</p><ul class="say">
-      <li>Recap: 27 imbalanced classes, heavy missingness that is MNAR, mostly French text, and plenty of noise.</li>
+      <li>Recap: 27 imbalanced classes, heavy missingness that is MAR, mostly French text, and plenty of noise.</li>
       <li>These findings drove every modelling choice that follows.</li>
       <li>One number to hold onto: we work on the deduplicated corpus, 83,502 listings after removing 1,414 duplicates from 84,916 raw.</li>
     </ul><p class="script-lbl">Script (say this)</p><ul class="say-script"><li>To summarise the exploration: a fourteen-to-one class imbalance, 35 percent missing descriptions that are informative, HTML in most descriptions, length that varies by class, 1,414 exact duplicates removed to leave 83,502 rows, and a multilingual corpus.</li><li>Each finding drives a concrete decision: weighted-F1, a missing flag, HTML stripping, length features, and a multilingual model.</li><li>That is the data ready for modelling.</li><li>I'll hand over to Jonathan, who built our text models.</li></ul>
@@ -608,15 +608,15 @@
 
   <div class="slide t">
     <div class="slide-top">
-      <p class="slide-title"><span class="num">32</span>Public leaderboard (#15, 0.8902)</p>
+      <p class="slide-title"><span class="num">32</span>Public leaderboard (#16, 0.8902)</p>
       <span class="badge t">Thomas</span>
     </div>
     <div class="timing"><b>36 s</b><span class="cum">18:30</span></div>
     <p class="cues-lbl">Cues</p><ul class="say">
-      <li>On the official Rakuten public leaderboard we rank number 15, with a public score of 0.8902.</li>
+      <li>On the official Rakuten public leaderboard we rank number 16, with a public score of 0.8902.</li>
       <li>The 0.8902 public score lines up closely with our internal 0.8984, so the model generalizes rather than overfitting the split.</li>
       <li>It is a competitive placing against a large field.</li>
-    </ul><p class="script-lbl">Script (say this)</p><ul class="say-script"><li>And this is the external validation.</li><li>We submitted our fusion model to the public Rakuten leaderboard as Sandeep, Jonathan, Thomas, Liora, and it scored 0.8902, ranked fifteenth on the all-time board.</li><li>That 0.8902 is the same metric as our 0.8984, just measured on the organiser's hidden test set instead of our own split, and the small gap shows the model generalises rather than overfitting.</li></ul>
+    </ul><p class="script-lbl">Script (say this)</p><ul class="say-script"><li>And this is the external validation.</li><li>We submitted our fusion model to the public Rakuten leaderboard as Sandeep, Jonathan, Thomas, Liora, and it scored 0.8902, ranked sixteenth on the all-time board.</li><li>That 0.8902 is the same metric as our 0.8984, just measured on the organiser's hidden test set instead of our own split, and the small gap shows the model generalises rather than overfitting.</li></ul>
   </div>
 
   <div class="slide t">

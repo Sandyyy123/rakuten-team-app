@@ -53,15 +53,16 @@ st.markdown("The 27 categories are heavily imbalanced: the largest class holds *
 st.image(os.path.join(RF, "cxd_classdist.png"), use_container_width=True)
 st.caption("Figure 1. Distribution of the 27 product categories, showing the 14.2-to-1 imbalance.")
 
-st.subheader("2.2 Missing descriptions - a Missing-Not-At-Random signal")
+st.subheader("2.2 Missing descriptions - a Missing-At-Random signal")
 st.markdown("**35.5%** of listings have no description, and the missing rate is **not uniform** across "
             "categories. A chi-square test of independence between description present/absent and the class "
-            "gives **χ² = 42,953** and **Cramér's V = 0.72** (p < 0.001) - a strong association. The "
-            "missingness is therefore **Missing-Not-At-Random (MNAR)**: its very presence is informative. "
-            "Rather than dropping ~35% of the data, a binary `desc_missing` indicator is added so the model "
-            "can use the absence as a feature.")
+            "gives **χ² = 42,953** and **Cramér's V = 0.72** (p < 0.001) - a strong association. Because the "
+            "absence depends on the **observed** category, the missingness is **Missing At Random (MAR)** "
+            "(not MNAR, which would require dependence on the unobserved text itself): its presence is "
+            "informative. Rather than dropping ~35% of the data, a binary `desc_missing` indicator is added "
+            "so the model can use the absence as a feature.")
 st.image(os.path.join(RF, "cxd_missing.png"), use_container_width=True)
-st.caption("Figure 2. Missing-description rate per category, showing a strong category dependence (MNAR).")
+st.caption("Figure 2. Missing-description rate per category, showing a strong category dependence (Missing At Random).")
 
 st.subheader("2.3 Text length varies by category")
 st.markdown("Total text length (title + description) is heavily right-skewed. Because the distribution is "
@@ -80,15 +81,15 @@ st.image(os.path.join(RF, "cxd_lang.png"), use_container_width=True)
 st.caption("Figure 4. Language distribution across listings: predominantly French, with an English and German tail.")
 
 st.subheader("2.5 Word frequency")
-st.markdown("**Left panel (raw counts):** the most frequent words are almost all stopwords (*de, la, et, "
+st.markdown("**Top panel (raw counts):** the most frequent words are almost all stopwords (*de, la, et, "
             "pour, les*) - they carry no category signal and are **removed with the nltk FR/EN/DE stopword lists**. "
-            "**Right panel (after removal):** the most frequent remaining unigrams and bigrams are content words "
+            "**Bottom panel (after removal):** the most frequent remaining content words are real, unstemmed terms "
             "(*cm, couleur, taille, piscine, eau*) - exactly the discriminative features TF-IDF keeps. The rarest "
             "terms (one-off typos/serials) are dropped by the minimum-document-frequency threshold and the "
             "20,000-feature cap.")
 st.image(os.path.join(RF, "cxd_wordfreq.png"), use_container_width=True)
-st.caption("Figure 5. Word frequency before vs after stopword removal. Left: raw counts are dominated by "
-           "stopwords (removed). Right: the surviving top unigrams and bigrams are content words (bigrams in purple).")
+st.caption("Figure 5. Word frequency before vs after stopword removal. Top: raw counts are dominated by "
+           "stopwords (removed). Bottom: the surviving most frequent tokens are content words.")
 st.divider()
 
 # ---- 3 Pre-processing ----------------------------------------------------------
@@ -96,11 +97,11 @@ st.header("3 · Pre-processing & feature engineering")
 st.subheader("3.1 Text cleaning (per listing, before the split)")
 st.markdown("These operations act on each listing independently, so they carry no information between rows and "
             "are applied to the whole dataset **before** splitting: designation + description **merged into one "
-            "field** and lowercased; URLs, e-mails, HTML tags (**BeautifulSoup**, so `rouge<br>bleu` becomes "
-            "`rouge bleu`), sizes and numbers are stripped while **French accents are kept**; the text is "
-            "tokenised with **TweetTokenizer**, **FR/EN/DE stopwords are removed (nltk)**, one-character tokens "
-            "dropped, and tokens **stemmed with the French Snowball stemmer** (an unstemmed copy is kept for the "
-            "transformer branch); a binary `desc_missing` indicator is built before any fill.")
+            "field** and lowercased; URLs, e-mails, HTML tags and entities (stripped by **regex**, so "
+            "`rouge<br>bleu` becomes `rouge bleu`), sizes and numbers are stripped while **French accents are "
+            "kept**; the text is tokenised with **TweetTokenizer**, **FR/EN/DE stopwords are removed (nltk)** and "
+            "one-character tokens dropped (**no stemming**). The transformer branch instead uses a near-raw copy "
+            "(`text_nostem`) that keeps stopwords; a binary `desc_missing` indicator is built before any fill.")
 st.subheader("3.2 Train / test split")
 st.markdown("The data are split **80/20**, **stratified on `prdtypecode`** so both sets preserve the 27-class "
             "proportions. The test set is held out purely for evaluation. Any transformation that learns from "
