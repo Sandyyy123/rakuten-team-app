@@ -295,7 +295,7 @@
       <li>The cleaning chain: strip HTML, lowercase, remove punctuation and digits, handle accents, and remove stopwords.</li>
       <li>We use multilingual stopword lists because of the language mix.</li>
       <li>We keep two versions, a light clean and a heavy clean, and let the models tell us which one they prefer.</li>
-    </ul><p class="script-lbl">Script (say this)</p><ul class="say-script"><li>Here is the cleaning pipeline.</li><li>Per listing, we merge the title and description, strip HTML with BeautifulSoup, remove URLs, emails and numbers, tokenize, and remove French, English and German stopwords.</li><li>All of that is per-row, so it is safe to run before the split.</li><li>TF-IDF, which learns corpus-wide statistics, is fit only on the training set and then applied to the test set, so there is no leakage.</li></ul>
+    </ul><p class="script-lbl">Script (say this)</p><ul class="say-script"><li>Here is the cleaning pipeline.</li><li>Per listing, we merge the title and description, strip HTML with regular expressions, remove URLs, emails and numbers, tokenize, and remove French, English and German stopwords.</li><li>All of that is per-row, so it is safe to run before the split.</li><li>TF-IDF, which learns corpus-wide statistics, is fit only on the training set and then applied to the test set, so there is no leakage.</li></ul>
   </div>
 
   <div class="slide s">
@@ -410,7 +410,7 @@
       <li>Training and validation curves stay close together, so there is no serious overfitting.</li>
       <li>Early stopping keeps us at the best epoch.</li>
       <li>The run is stable and reproducible.</li>
-    </ul><p class="script-lbl">Script (say this)</p><ul class="say-script"><li>This shows an important subtlety in training.</li><li>The F1 score keeps improving up to about epoch 8, while the validation loss bottoms out earlier and then rises.</li><li>So if we early-stop on loss we stop too soon; selecting the checkpoint on F1 instead gives us the better model.</li><li>It is a good reminder that the metric you stop on matters.</li></ul>
+    </ul><p class="script-lbl">Script (say this)</p><ul class="say-script"><li>This shows an important subtlety in training.</li><li>The F1 score keeps improving up to epoch 7, the last epoch of the run, while the validation loss bottoms out at epoch 4 and then rises.</li><li>So if we early-stop on loss we stop too soon; selecting the checkpoint on F1 instead gives us the better model.</li><li>It is a good reminder that the metric you stop on matters.</li></ul>
   </div>
 
   <div class="slide j">
@@ -523,9 +523,9 @@
     <p class="cues-lbl">Cues</p><ul class="say">
       <li>Our flagship result: late fusion of text and image features gives weighted-F1 0.8984, our best model.</li>
       <li>We freeze both backbones and train only a small fusion head, about 0.4% of the parameters.</li>
-      <li>It converges by epoch 9, so it is cheap to train, and 0.8984 is a 5-seed mean, so it is stable rather than a lucky run.</li>
+      <li>It converges by epoch 8, so it is cheap to train, and 0.8985 is a 5-seed mean, so it is stable rather than a lucky run.</li>
       <li>It beats text alone at 0.87 and image alone at 0.65, the two views complement each other.</li>
-    </ul><p class="script-lbl">Script (say this)</p><ul class="say-script"><li>Now the fusion, which is our best model.</li><li>We take the frozen EfficientNet-B0 image features and the frozen XLM-RoBERTa text features, concatenate them to 2048 dimensions, and train only a small head on top, about one million parameters, which is 0.4 percent of the network.</li><li>It reaches weighted-F1 0.8984 as a five-seed mean.</li><li>The image branch adds a real lift over text alone, concentrated exactly on the books, magazines and games where the picture disambiguates.</li></ul>
+    </ul><p class="script-lbl">Script (say this)</p><ul class="say-script"><li>Now the fusion, which is our best model.</li><li>We take the frozen EfficientNet-B0 image features and the frozen XLM-RoBERTa text features, concatenate them to 2048 dimensions, and train only a small head on top, about one million parameters, which is 0.4 percent of the network.</li><li>It reaches weighted-F1 0.8985 as a five-seed mean.</li><li>The image branch adds a real lift over text alone, concentrated exactly on the books, magazines and games where the picture disambiguates.</li></ul>
   </div>
 
   <div class="slide t">
@@ -577,7 +577,7 @@
       <li>Side by side: text is the workhorse, the image is weaker on its own, and fusion beats both.</li>
       <li>Fusion is also the cheapest of the three to train, thanks to the frozen features.</li>
       <li>Best accuracy and lowest training cost together is the headline of the image and fusion work.</li>
-    </ul><p class="script-lbl">Script (say this)</p><ul class="say-script"><li>Here are the three training stories side by side: the text model at 0.87, the image model at 0.6515, and the fusion at 0.8984.</li><li>It makes the headline visual: text carries most of the signal, the image is weaker alone, and the fusion is clearly the strongest of the three.</li></ul>
+    </ul><p class="script-lbl">Script (say this)</p><ul class="say-script"><li>Here are the three ablation scores side by side: image-only 0.6787, text-only 0.8761, and the full multimodal 0.8985.</li><li>It makes the headline visual: text carries most of the signal, the image is weaker alone, and the fusion is clearly the strongest of the three.</li></ul>
   </div>
 
   <div class="slide t">
